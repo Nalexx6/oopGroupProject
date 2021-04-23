@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "username": "A",
+      "email": "a@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": 2,
+      "username": "B",
+      "email": "b@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": 1,
+      "username": "C",
+      "email": "c@gmail.com",
+      "password": "12345678"
+    }
+  ]
+}
