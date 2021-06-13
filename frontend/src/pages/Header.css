@@ -6,9 +6,25 @@
 .header-content{
     width: 1200px;
     margin: auto;
+    padding: 30px;
+}
+.header-left-block{
+    float: left;
+}
+.header-right-block{
+    float: right;
+    display: flex;
+    flex-direction: row;
 }
 .company-name{
     color: chocolate;
-    margin: 0;
-    font-size: 30px;
+    margin: 10px;
+    font-size: 60px;
+    font-weight: bold;
+}
+.header-profile-img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: chocolate;
 }
