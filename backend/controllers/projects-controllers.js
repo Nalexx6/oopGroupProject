@@ -46,6 +46,7 @@ const createProject = async (req, res, next) => {
         code, 
         tags, 
         rating: 0,
+        reviews: [],
         creator
     })
     let user;

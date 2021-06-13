@@ -7,7 +7,9 @@ const projectSchema = new Schema({
     code: { type: String, required: true },
     tags: [{ type: String, required: false }],
     rating: { type: Number, required: true },
-    creator: { type: mongoose.Types.ObjectId, required: true, ref: 'User' }
+    creator: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
+    reviews: [{ type: mongoose.Types.ObjectId, required: true, ref: 'Review'}]
+
 })
 
 module.exports = mongoose.model('Project', projectSchema);
