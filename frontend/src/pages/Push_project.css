@@ -1,0 +1,64 @@
+.main{
+    width: 100%;
+}
+.main-content{
+    width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+.main-content-left-column{
+    width: 400px;
+    background-color: chocolate;
+    height: 500px;
+    padding: 20px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+}
+.main-content-right-column{
+    width: 800px;
+    height: 500px;
+    background-color: #282c34;
+    padding: 20px;
+}
+
+
+.input-label{
+    font-size: 30px;
+    font-weight: bold;
+}
+.input-data{
+    width: 300px;
+    margin: auto;
+    height: 40px;
+    font-size: 30px;
+}
+
+.add-project-button{
+    width: 250px;
+    height: 100px;
+    background-color: #282c34;
+    border-radius: 20px;
+    margin: auto;
+    text-align: center;
+    line-height: 100px;
+}
+.add-project-text{
+    font-weight: bold;
+    font-size: 30px;
+    color: chocolate;
+    margin: auto;
+}
+
+.text-area{
+    width: 100%;
+    height: 100%;
+}
+::-webkit-input-placeholder {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    padding-top: 200px;
+  }
