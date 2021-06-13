@@ -1,0 +1,73 @@
+.main{
+    width: 100%;
+}
+.main-content{
+    width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+.main-content-left-column{
+    width: 300px;
+    background-color: chocolate;
+    height: 500px;
+    padding: 20px;
+    text-align: center;
+}
+.main-content-right-column{
+    width: 900px;
+    background-color: #282c34;
+    padding: 20px;
+}
+
+.profile-img{
+    height: 150px;
+    width: 150px;
+    border-radius: 75px;
+    background-color: #282c34;
+    margin: auto;
+}
+.profile-text{
+    font-weight: bold;
+    font-size: 60px;
+    color: #282c34;
+    margin: 20px;
+}
+
+.add-project-button{
+    width: 250px;
+    height: 100px;
+    background-color: #282c34;
+    border-radius: 20px;
+    margin: auto;
+    text-align: center;
+    line-height: 100px;
+}
+.add-project-text{
+    font-weight: bold;
+    font-size: 30px;
+    color: chocolate;
+    margin: auto;
+}
+
+.projects-holder{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.project{
+    width: 240px;
+    height: 240px;
+    border-radius: 20px;
+    background-color: chocolate;
+    margin: 20px;
+    text-align: center;
+}
+.project-text{
+    color: #282c34;
+    font-size: 30px;
+    margin: 25px;
+    font-weight: bold;
+}
