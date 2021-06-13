@@ -1,0 +1,25 @@
+.future-header{
+    width: 100%;
+    height: 150px;
+    background: #282c34;
+}
+.card{
+    width: 1000px;
+    height: 200px;
+    background: chocolate;
+    margin: auto auto 50px;
+}
+.main-div{
+    margin: auto;
+    width: 1200px;
+    height: 100%;
+    background: #282c34;
+}
+.header-content{
+    width: 1200px;
+    margin: auto;
+}
+.company-name{
+    color: chocolate;
+    font-size: 30px;
+}
