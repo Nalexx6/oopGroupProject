@@ -1,12 +1,42 @@
-.card{
+.main-div-card{
     width: 1000px;
     height: 200px;
     background: chocolate;
     margin: auto auto 50px;
+
+
 }
 .main-div{
     margin: auto;
     width: 1200px;
     height: 100%;
     background: #282c34;
+}
+
+.main-div-tools{
+    display: flex;
+}
+.main-div-text{
+    color: chocolate;
+    font-size: 30px;
+    margin: 0 55px;
+
+}
+
+.main-div-search{
+    color: chocolate;
+    font-size: 30px;
+    margin: 0 55px;
+}
+.card-profile-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #282c34;
+}
+
+.card-description{
+    width: 700px;
+    height: 100px;
+    background: wheat;
 }

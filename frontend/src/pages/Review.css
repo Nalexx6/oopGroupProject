@@ -1,0 +1,53 @@
+.left-bar{
+    width: 50px;
+    margin: 0;
+}
+.right-bar{
+    width: 1065px;
+    text-align: center;
+    margin-left: 25px;
+    margin-bottom: 50px;
+}
+
+.review-text{
+    color: chocolate;
+    font-size: 30px;
+    margin: 0;
+}
+
+.main-div{
+    margin: auto;
+    width: 1200px;
+    height: 100%;
+    background: #282c34;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+.review-text-div{
+    background: wheat;
+    height: 800px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.comment-div{
+    background: white;
+    min-height: 100px;
+    line-height: 100px;
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+
+.input-comment{
+    width: 900px;
+    height: 100px;
+}
