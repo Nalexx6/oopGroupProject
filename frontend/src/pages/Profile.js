@@ -1,8 +1,7 @@
 import React from 'react';
-import "./Feed.css"
 import "./Header.css"
 
-const Feed = () => {
+const Profile = () => {
     return (
     <div>
         <div className={"future-header"}>
@@ -12,11 +11,9 @@ const Feed = () => {
         </div>
         <div className={"main-div"}>
             <div className={"card"} />
-            <div className={"card"} />
-            <div className={"card"} />
         </div>
     </div>
   );
 }
 
-export default Feed;
+export default Profile;
