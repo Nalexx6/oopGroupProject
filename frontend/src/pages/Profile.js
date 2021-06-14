@@ -2,34 +2,30 @@ import React, { useEffect, useState } from 'react';
 import "./Header.css"
 import "./Profile.css"
 import Header from "./Header"
+import {getProjectsForUser} from "../services/service";
 
 const g = {
     name: "Dima Bernada",
     rating: 3.47
 }
 
-const temporary_project = [
-    {
-        name: "Test",
-        rating: 4.5,
-        count_review: 2
-    },
-    {
-        name: "Test2",
-        rating: 3.2,
-        count_review: 3
-    },
-    {
-        name: "Test2",
-        rating: 3.2,
-        count_review: 3
-    }
-]
-
-function fetchProjectsForUser() {
-    return fetch('http://localhost:5000/api/projects/user/60c7a4eb35e6652af83b85dc')
-        .then(data => data.json())
-}
+// const temporary_project = [
+//     {
+//         name: "Test",
+//         rating: 4.5,
+//         count_review: 2
+//     },
+//     {
+//         name: "Test2",
+//         rating: 3.2,
+//         count_review: 3
+//     },
+//     {
+//         name: "Test2",
+//         rating: 3.2,
+//         count_review: 3
+//     }
+// ]
 
 const ViewProject = ({project}) => {
     return(
@@ -43,7 +39,7 @@ const ViewProject = ({project}) => {
 
 const Profile = () => {
     const [projects, setProjects] = useState(null)
-    const [loading, setLoading] = useState(null)
+    // const [loading, setLoading] = useState(null)
 
     useEffect ( () => {
         // const getProjectsForUser = async () => {
@@ -51,9 +47,11 @@ const Profile = () => {
         //     setLoading(false)
         //     setProjects(arr)
         // }
-        fetchProjectsForUser()
+        alert("LOOOOOl")
+        getProjectsForUser()
             .then(items => {
                 setProjects(items)
+
                 // setLoading(false)
             })
         },
@@ -76,12 +74,12 @@ const Profile = () => {
                 </div>
                 <div className="main-content-right">
                     <div className="projects-holder">
-                        { loading ? <div className="company-name"> Null </div> :
-                            projects.map(
-                                (p) => {
-                                    return <ViewProject project={p}/>
-                                }
-                            )
+                        {/*{ loading ? <div className="company-name"> Null </div> :*/}{
+                            // projects.map(
+                            //     (p) => {
+                            //         return <ViewProject project={p}/>
+                            //     }
+                            // )
                         }
                     </div>
                 </div>
