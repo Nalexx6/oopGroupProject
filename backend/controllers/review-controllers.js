@@ -151,7 +151,7 @@ const deleteReview = async (req, res, next) => {
 
     let review;
     try {
-        review = await Review.findById(id).populate('creator');
+        review = await Review.findById(id);
     } catch (err) {
         const error = new HttpError(
             'Something went wrong, could not delete review.',
@@ -187,7 +187,7 @@ const deleteReview = async (req, res, next) => {
         await sess.commitTransaction();
     } catch (err) {
         const error = new HttpError(
-            'Something went wrong, could not delete place.',
+            'Something went wrong, could not delete review.',
             500
         );
         return next(error);

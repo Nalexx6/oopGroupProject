@@ -118,7 +118,7 @@ const deleteProject = async (req, res, next) => {
 
     let project;
     try {
-      project = await Project.findById(id).populate('creator');
+      project = await Project.findById(id);
     } catch (err) {
       const error = new HttpError(
         'Something went wrong, could not delete place.',
