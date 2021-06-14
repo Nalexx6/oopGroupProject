@@ -2,7 +2,7 @@ import React from 'react';
 import "./Review.css"
 import "./Header.css"
 import Button from 'react-bootstrap/Button';
-
+import Header from "./Header";
 
 const Review = () => {
     return (
@@ -13,20 +13,7 @@ const Review = () => {
             integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
             crossOrigin="anonymous"
         />
-        <div className={"future-header"}>
-            <div className={"header-content"}>
-                <div className={"header-left-block"}>
-                        <p className={"company-name"}>CoReTool</p>
-                </div>
-                <div className={"header-right-block"}>
-                        <p className={"company-name"}>
-                            Profile
-                        </p>
-                        <div className={"header-profile-img"}>
-                        </div>
-                </div>
-            </div>
-        </div>
+           { Header() }
         <div className={"main-div"}>
             <div className={"container"}>
                 <div className={"row"}>
