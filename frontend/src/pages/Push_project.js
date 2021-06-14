@@ -1,24 +1,12 @@
 import React from 'react';
 import "./Header.css"
 import "./Push_project.css"
+import Header from "./Header";
 
 const Push_project = () => {
     return (
         <div>
-            <div className={"future-header"}>
-                <div className={"header-content"}>
-                    <div className={"header-left-block"}>
-                        <p className={"company-name"}>CoReTool</p>
-                    </div>
-                    <div className={"header-right-block"}>
-                        <p className={"company-name"}>
-                            Profile
-                        </p>
-                        <div className={"header-profile-img"}>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            { Header() }
             <div className={"main"}>
                 <div className={"main-content"}>
                     <div className={"main-content-left-column"}>
