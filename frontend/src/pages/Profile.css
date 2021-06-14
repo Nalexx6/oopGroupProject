@@ -7,15 +7,14 @@
     display: flex;
     flex-direction: row;
 }
-.main-content-left-column{
+.main-content-left{
     width: 300px;
     background-color: chocolate;
-    height: 500px;
     padding: 20px;
     text-align: center;
 }
-.main-content-right-column{
-    width: 900px;
+.main-content-right{
+    width: 1000px;
     background-color: #282c34;
     padding: 20px;
 }
