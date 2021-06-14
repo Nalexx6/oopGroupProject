@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import "./Header.css"
 import "./Profile.css"
+import Header from "./Header"
 
-const g = {}
+const g = {
+    name: "Dima Bernada",
+    rating: 3.47
+}
 
 const temporary_project = [
     {
         name: "Test",
-        rating: 14,
+        rating: 4.5,
         count_review: 2
     },
     {
         name: "Test2",
-        rating: 15,
+        rating: 3.2,
+        count_review: 3
+    },
+    {
+        name: "Test2",
+        rating: 3.2,
         count_review: 3
     }
 ]
@@ -23,15 +32,15 @@ const ViewProject = ({project}) => {
     return(
         <div className="project">
             <p className="project-text">{ project.name }</p>
-            <p className="project-text">{ project.rating }</p>
-            <p className="project-text">{ project.count_review }</p>
+            <p className="project-text">Rating: { project.rating }</p>
+            <p className="project-text">Reviews: { project.count_review }</p>
         </div>
     )
 }
 
 const Profile = () => {
-    const [projects, setProjects] = useState(null)
-    const [lodaing, setLoading] = useState(true)
+    // const [projects, setProjects] = useState(null)
+    // const [lodaing, setLoading] = useState(true)
     // useEffect ( () => {
     //         let arr = await getProjectsProfile()
     //         setLoading(false)
@@ -42,33 +51,20 @@ const Profile = () => {
     return (
 
     <div>
-        <div className={"future-header"}>
-            <div className={"header-content"}>
-                <div className={"header-left-block"}>
-                    <p className={"company-name"}>CoReTool</p>
-                </div>
-                <div className={"header-right-block"}>
-                    <p className={"company-name"}>
-                        Profile
-                    </p>
-                    <div className={"header-profile-img"}>
+        { Header() }
+        <div className="main">
+            <div className="main-content">
+                <div className="main-content-left">
+                    <div className="profile-img">
+                    </div>
+                    <p className="profile-text">{g.name}</p>
+                    <p className="profile-text">Rating: {g.rating}</p>
+                    <div className="add-project-button">
+                        <p className="add-project-text">Add project</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div className={"main"}>
-            <div className={"main-content"}>
-                <div className={"main-content-left"}>
-                    <div className={"profile-img"}>
-                    </div>
-                    <p className={"profile-text"}>Name</p>
-                    <p className={"profile-text"}>Rating</p>
-                    <div className={"add-project-button"}>
-                        <p className={"add-project-text"}>Add project</p>
-                    </div>
-                </div>
-                <div className={"main-content-right"}>
-                    <div className={"projects-holder"}>
+                <div className="main-content-right">
+                    <div className="projects-holder">
                         { temporary_project.map(
                             (p) => {
                                 return <ViewProject project={p}/>

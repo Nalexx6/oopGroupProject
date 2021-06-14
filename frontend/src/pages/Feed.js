@@ -57,13 +57,13 @@ const Feed = () => {
                 <div className={"col"}> <p className={"main-div-text"}>New and Popular Code:</p> </div>
                 <div className={"col"} style={{textAlign: "right"}}> <p className={"main-div-search"}>Search</p> </div>
             </div>
-            { loading ? {
+            {/*{ loading ? {*/}
 
-            }:{
-                for(var i = 0; i < projects.size(); i++){
+            {/*}:{*/}
+            {/*    for(var i = 0; i < projects.size(); i++){*/}
 
-            }
-            }}
+            {/*}*/}
+            {/*}}*/}
             {/*<div className={"main-div-card"}>*/}
             {/*    <div className={"main-div-tools"}>*/}
             {/*        <div className={"card-profile-img"}/>*/}
