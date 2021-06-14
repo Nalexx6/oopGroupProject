@@ -28,7 +28,7 @@ const Push_project = () => {
                         <label className={"input-label"}>Nick</label>
                         <input className={"input-data"} type="text" />
 
-                        <label className={"input-label"}>Label</label>
+                        <label className={"input-label"}>Short description</label>
                         <input className={"input-data"} type="text" />
 
                         <div className={"add-project-button"}>
