@@ -28,8 +28,9 @@ const handleSubmit = async (project, inputValue, setProject, setLoading) => {
 
     _project.user = await fetchUser(project.creator);
     _project.review_data = [_project.reviews.length]
-    for(let i = 0;i < _project.reviews.length; i++) {
-        _project.review_data[i] = await fetchReview(_project.reviews[i]);
+
+    for(let i = 0,j = _project.reviews.length-1;i < _project.reviews.length; i++, j--) {
+        _project.review_data[j] = await fetchReview(_project.reviews[i]);
     }
     setProject(_project);
     setLoading(false)
@@ -77,8 +78,8 @@ const Project = () => {
             const _project = await fetchProject("60c7a52035e6652af83b85df")
             _project.user = await fetchUser(_project.creator);
             _project.review_data = [_project.reviews.length]
-            for(let i = 0;i < _project.reviews.length; i++) {
-                _project.review_data[i] = await fetchReview(_project.reviews[i]);
+            for(let i = 0,j = _project.reviews.length-1;i < _project.reviews.length; i++, j--) {
+                _project.review_data[j] = await fetchReview(_project.reviews[i]);
             }
             setProject(_project)
             setLoading(false)
@@ -89,12 +90,6 @@ const Project = () => {
     )
     return (
     <div>
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-            crossOrigin="anonymous"
-        />
            { Header() }
         <div className={"main-div"}>
             <div className={"container"}>
