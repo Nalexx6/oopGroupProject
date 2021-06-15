@@ -4,7 +4,7 @@ import "./Header.css"
 import Button from 'react-bootstrap/Button';
 import Header from "./Header";
 
-import {fetchProject, fetchProjectsForUser, fetchReview, fetchUser} from "../services/service";
+import {fetchProject, fetchProjectsForUser, fetchReview, fetchUser, addReview} from "../services/service";
 
 // const woteUpProject = ({project}) => {
 //     project.rating++;
@@ -14,14 +14,16 @@ import {fetchProject, fetchProjectsForUser, fetchReview, fetchUser} from "../ser
 //     project.rating++;
 // }
 
-const handleSubmit = (project, inputValue, setProject) => {
-    project.review_data.push(inputValue);
-    setProject(prev => ({
-        ...prev,
-        review_data:{
-            ...review_data, inputValue
-        }
-    }))
+const handleSubmit = async (project, inputValue, setProject) => {
+    let new_review = {
+        content: inputValue,
+        mark: 1,
+        project: project.id,
+        creator: project.creator,
+    }
+    await addReview(new_review);
+    const _project = await fetchProject("60c7a52035e6652af83b85df")
+    setProject(_project);
 }
 
 
