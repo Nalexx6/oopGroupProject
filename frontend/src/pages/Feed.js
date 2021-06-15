@@ -32,8 +32,9 @@ const Feed = () => {
             const _users = [];
             for(let i = 0;i < _projects.length; i++) {
                 _users[i] = fetchUser(_projects[i].creator);
-                _projects[i]['user'] = _users[i];
+                _projects[i].user = _users[i];
             }
+            console.log(_projects)
             setProjects(_projects)
             setLoading(false)
         }
