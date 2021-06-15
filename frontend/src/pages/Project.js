@@ -37,25 +37,17 @@ const handleSubmit = async (project, inputValue, setProject, setLoading) => {
 }
 
 
-
-const LeftBarGeneration = ({project, setProject}) => {
-    return(
-        <div className={"left-bar"}>
-            <Button style={{width: 40}} variant="success" >^</Button>
-            <p className={"review-text"}>{project.rating}</p>
-            <Button style={{width: 40}} variant="danger" >v</Button>
-        </div>
-    )
-
-}
-
-const RightBarGeneration = ({project, setProject, setLoading}) => {
+const ProjectGeneration = ({project, setProject, setLoading}) => {
     const [inputValue, setInputValue] = useState("");
 
     return(
         <div className={"right-bar"}>
-            <p className={"review-text"}>Author: {project.user.login} | {project.title} </p>
-            <div className={"review-text-div"}><textarea className={"text-area"} placeholder={project.code}/></div>
+            <div className={"main-div-tools"}>
+                <p className={"review-text"}>{project.title} </p>
+                <p className={"review-rating"} >Rating: {project.rating}/5</p>
+            </div>
+            <div className={"review-text-div"}><div className={"code-area"}/> {project.code} </div>
+            <p className={"review-text"}>Author: {project.user.login}</p>
             <div className={"comment-div"}>
                  <input className={"input-comment"} value={inputValue} onChange={(event) => {setInputValue(event.target.value)}} type="text" />
                  <Button style={{textAlign: "left"}}  variant="info" onClick={() => handleSubmit(project, inputValue, setProject, setLoading)} >Publish</Button>
@@ -92,19 +84,15 @@ const Project = () => {
     <div>
            { Header() }
         <div className={"main-div"}>
-            <div>
-                { loading ?
-                    <div>
-                        <div className={"left-bar"}/>
-                        <div className={"right-bar"}></div>
-                    </div>
-                    :
-                    <div style={{display: "flex", flexDirectionq: "row"}}>
-                        <LeftBarGeneration project = {project} setProject = {setProject}/>
-                        <RightBarGeneration  project = {project} setProject = {setProject} setLoading = {setLoading}/>
-                    </div>
-                }
-            </div>
+            { loading ?
+                <div className={"main-div-wrapper"}>
+                    <div className={"right-bar"}/>
+                </div>
+                :
+                <div className={"main-div-wrapper"}>
+                    <ProjectGeneration  project = {project} setProject = {setProject} setLoading = {setLoading}/>
+                </div>
+            }
         </div>
     </div>
   );
