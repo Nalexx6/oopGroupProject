@@ -42,8 +42,6 @@ const Profile = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect ( () => {
-        alert("LOOOOOl")
-
         const getProjectsForUser = async () => {
             const arr = await fetchProjectsForUser()
             setProjects(arr)
@@ -77,7 +75,7 @@ const Profile = () => {
                 </div>
                 <div className="main-content-right">
                     <div className="projects-holder">
-                        { loading ? <div className="company-name"> Null </div> :
+                        { loading ? <div className="company-name"> </div> :
                             projects.map(
                                 (p) => {
                                     return <ViewProject project={p}/>
