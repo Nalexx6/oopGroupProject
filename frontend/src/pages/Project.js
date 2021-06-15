@@ -92,14 +92,14 @@ const Project = () => {
     <div>
            { Header() }
         <div className={"main-div"}>
-            <div className={"container"}>
+            <div>
                 { loading ?
-                    <div className="row">
+                    <div>
                         <div className={"left-bar"}/>
                         <div className={"right-bar"}>NULL</div>
                     </div>
                     :
-                    <div className={"row"}>
+                    <div style={{display: "flex", flexDirectionq: "row"}}>
                         <LeftBarGeneration project = {project} setProject = {setProject}/>
                         <RightBarGeneration  project = {project} setProject = {setProject} setLoading = {setLoading}/>
                     </div>

@@ -13,12 +13,16 @@
 
 .main-div-tools{
     display: flex;
+    align-items: center;
+
 }
 .main-div-text{
+    margin: auto;
     color: chocolate;
     font-size: 30px;
-    margin: 0 55px;
 
+    display: flex;
+    align-items: center;
 }
 
 .main-div-search{
