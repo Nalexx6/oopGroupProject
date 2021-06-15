@@ -25,3 +25,10 @@ export async function fetchUser(id) {
     console.log(result)
     return result.user;
 }
+
+export async function fetchReview(id) {
+    let response = await fetch('http://localhost:5000/api/reviews/'+ id)
+    let result = await response.json();
+    console.log(result)
+    return result.review;
+}
