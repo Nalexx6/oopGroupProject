@@ -91,7 +91,9 @@ const signup = async (req, res, next) => {
         const error = new HttpError('Signing up failed, please try again', 500);
         return next(error); 
     }
-    res.status(201).json({ token });
+    res.status(201).json({ 
+        user: createdUser, 
+    });
 };
 
 const login = async (req, res, next) => {
@@ -134,7 +136,7 @@ const login = async (req, res, next) => {
         return next(error)
     }
     res.json({ 
-        userId: existingUser.id,
+        user: existingUser,
         token: token,
     })
 };
