@@ -13,7 +13,7 @@ const Push_project = () => {
                     <div className={"main-content-left-column"}>
                         <div>
                             <label className={"input-label"}>Project title</label>
-                            <input className={"input-data"} type="text" />
+                            <input className={"input-data"} type="text" maxLength="13" />
                         </div>
 
                         <Link to="/profile">
