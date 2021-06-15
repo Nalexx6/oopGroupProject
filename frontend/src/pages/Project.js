@@ -22,9 +22,6 @@ const handleSubmit = async (project, inputValue, setProject, setLoading) => {
         creator: "60c8dcd8dbae632d8d3e11fb",
     }
 
-    await addReview(new_review)
-    const _project = await fetchProject("60c7a52035e6652af83b85df")
-
     setLoading(true)
     await addReview(new_review);
     const _project = await fetchProject("60c7a52035e6652af83b85df");
