@@ -3,7 +3,10 @@ const projectsControllers = require('../controllers/projects-controllers');
 
 const router = express.Router();
 
+
 router.get('/:pid', projectsControllers.getProjectById);
+
+router.get('/', projectsControllers.getAllProjects);
 
 router.get('/user/:uid', projectsControllers.getProjectsByUserId);
 

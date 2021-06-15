@@ -24,6 +24,20 @@ const getProjectById = async (req, res, next) => {
     res.json({ project: project.toObject({getters: true }) });
 }
 
+const getAllProjects = async (req, res, next) => {
+    let projects;
+    try{
+        projects = await Project.find({}); // exclude password
+    } catch(err){
+        const error = new HttpError(
+            'Fetching users failed, please try again later.',
+            500
+        );
+        return next(error);
+    }
+    res.json({projects: projects.map(user => user.toObject({ getters: true }))});
+}
+
 const getProjectsByUserId = async (req, res, next) => {
     const userId = req.params.uid;
     let projects;
@@ -146,6 +160,8 @@ const deleteProject = async (req, res, next) => {
       await project.remove({ session: sess });
       project.creator.projects.pull(project);
       await project.creator.save({ session: sess });
+
+
       await sess.commitTransaction();
     } catch (err) {
       const error = new HttpError(
@@ -158,6 +174,7 @@ const deleteProject = async (req, res, next) => {
 }
 
 exports.getProjectById = getProjectById;
+exports.getAllProjects = getAllProjects;
 exports.getProjectsByUserId = getProjectsByUserId;
 exports.createProject = createProject;
 exports.updateProject = updateProject;
