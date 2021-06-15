@@ -4,10 +4,13 @@ import Header from "./Header";
 import "./Sign_in.css"
 import "./Push_project.css"
 import { Link } from 'react-router-dom';
+import {AuthContext} from "../context/AuthContext";
+
 
 
 const Sign_in = () => {
-    
+
+
     return (
     <div>
         <div className="main1">

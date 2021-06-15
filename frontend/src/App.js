@@ -6,7 +6,7 @@ import Push_project from "./pages/Push_project"
 import Project from "./pages/Project";
 import Sign_in from "./pages/Sign_in"
 import Sign_up from './pages/Sign_up';
-import AuthContext from './context/AuthContext';
+import {AuthContext} from './context/AuthContext';
 import {useAuth} from "./hooks/auth-hook";
 
 import {
