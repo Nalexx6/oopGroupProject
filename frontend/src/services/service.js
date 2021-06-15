@@ -58,6 +58,7 @@ export async function editProject(project) {
 export async function loginUser(user) {
     let response = await fetch('http://localhost:5000/api/users/login',{
         headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
         body: JSON.stringify(user)
     })
 
@@ -78,4 +79,16 @@ export async function signUpUser(user) {
     console.log(result)
     return result.user;
 
+}
+
+export async function addProject(project){
+    let response = await fetch('http://localhost:5000/api/projects',{
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(project)
+    })
+
+    let result = await response.json();
+    console.log(result)
+    return result.project;
 }
