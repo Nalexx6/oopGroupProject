@@ -11,7 +11,7 @@ const Sign_up = () => {
     return (
     <div>
         <div className="main1">
-            <div className="container">
+            <div className="container1">
                 <div className="inside-container">
                     <p className="text">
                         Login

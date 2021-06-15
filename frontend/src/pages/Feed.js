@@ -2,23 +2,26 @@ import React, {useEffect, useState} from 'react';
 import "./Feed.css"
 import "./Header.css"
 import Header from "./Header";
+import { Link } from 'react-router-dom';
 
 import {fetchProjectsForUser, fetchUser} from "../services/service";
 
 
 const CardGeneration = ({project}) => {
     return(
-        <div className={"main-div-card"}>
-            <div className={"main-div-tools"}>
-                <div className={"card-profile-img"}/>
-                    <p className={"main-div-text"} style={{color: "#282c34"}}>{project.user.login} | {project.title}</p>
-                    <p className={"main-div-text"} style={{color: "#282c34", textAlign: "right"}}>{project.rating} | {project.reviews.length}</p>
+        <Link to="/project">
+            <div className={"main-div-card"}>
+                <div className={"main-div-tools"}>
+                    <div className={"card-profile-img"}/>
+                        <p className={"main-div-text"} style={{color: "#282c34"}}>{project.user.login} | {project.title}</p>
+                        <p className={"main-div-text"} style={{color: "#282c34", textAlign: "right"}}>{project.rating} | {project.reviews.length}</p>
+                    </div>
+                    <div className={"main-div-tools"} style={{height: 150}}>
+                        <p className={"main-div-text"} style={{color: "#282c34"}}>Review Count</p>
+                    <div className={"card-description"}/>
                 </div>
-                <div className={"main-div-tools"} style={{height: 150}}>
-                    <p className={"main-div-text"} style={{color: "#282c34"}}>Review Count</p>
-                <div className={"card-description"}/>
             </div>
-        </div>
+        </Link>
     )
 }
 

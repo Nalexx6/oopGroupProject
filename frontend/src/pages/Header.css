@@ -23,11 +23,10 @@
     font-weight: bold;
     text-decoration: none;
 }
-
 .company-name:focus, :hover, :visited, :link, :active {
     text-decoration: none;
-    color: chocolate;
 }
+
 .header-profile-img{
     width: 100px;
     height: 100px;
