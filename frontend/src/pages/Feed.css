@@ -13,8 +13,7 @@
 
 .main-div-tools{
     display: flex;
-    align-items: center;
-
+    justify-content: center;
 }
 .main-div-text{
     margin: auto;

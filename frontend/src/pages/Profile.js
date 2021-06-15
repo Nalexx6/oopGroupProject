@@ -53,6 +53,11 @@ const Profile = () => {
                             <p className="add-project-text">Add project</p>
                         </div>
                     </Link>
+                    <Link to="/push_project" >
+                        <div className="project-button">
+                                <p className="add-project-text">Log out</p>
+                        </div>
+                    </Link>
                 </div>
                 <div className="main-content-right">
                     <div className="projects-holder">
