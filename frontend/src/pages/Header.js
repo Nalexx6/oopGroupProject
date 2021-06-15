@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css"
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return(
@@ -9,12 +10,9 @@ const Header = () => {
                     <p className="company-name">CoReTool</p>
                 </div>
                 <div className="header-right-block">
-                    <p className="company-name">
-                        Feed |
-                    </p>
-                    <p className="company-name">
-                        Profile
-                    </p>
+                    <Link className="company-name" to="/feed"> Feed |</Link>
+                    <Link className="company-name" to="/profile"> Profile</Link>
+                    
                     <div className="header-profile-img">
                     </div>
                 </div>

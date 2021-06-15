@@ -3,13 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Header from "./Header";
 import "./Sign_in.css"
 import "./Push_project.css"
+import { Link } from 'react-router-dom';
 
 
 const Sign_up = () => {
     
     return (
     <div>
-        <div className="main">
+        <div className="main1">
             <div className="container">
                 <div className="inside-container">
                     <p className="text">
@@ -25,7 +26,7 @@ const Sign_up = () => {
                     </p>
                     <input className={"input-data"} type="text" />
                     <div className="submit">
-                        <Button className="button" variant="success" >Sign Up</Button>
+                        <Link to="/"><Button className="button" variant="success" >Sign Up</Button></Link>
                     </div>
                 </div>
             </div>

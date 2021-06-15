@@ -3,6 +3,7 @@ import "./Header.css"
 import "./Profile.css"
 import Header from "./Header"
 import {fetchProjectsForUser} from "../services/service";
+import { Link } from 'react-router-dom';
 
 const g = {
     name: "Dima Bernada",
@@ -11,11 +12,13 @@ const g = {
 
 const ViewProject = ({project}) => {
     return(
-        <div className="project">
-            <p className="project-text">{ project.title }</p>
-            <p className="project-text">Rating: { project.rating }</p>
-            <p className="project-text">Reviews: { project.reviews.length }</p>
-        </div>
+        <Link to="/project">
+            <div className="project">
+                <p className="project-text">{ project.title }</p>
+                <p className="project-text">Rating: { project.rating }</p>
+                <p className="project-text">Reviews: { project.reviews.length }</p>
+            </div>
+        </Link>
     )
 }
 
@@ -45,9 +48,11 @@ const Profile = () => {
                     </div>
                     <p className="profile-text">{ g.name }</p>
                     <p className="profile-text">Rating: { g.rating }</p>
-                    <div className="add-project-button">
-                        <p className="add-project-text">Add project</p>
-                    </div>
+                    <Link to="/push_project" >
+                        <div className="add-project-button">
+                            <p className="add-project-text">Add project</p>
+                        </div>
+                    </Link>
                 </div>
                 <div className="main-content-right">
                     <div className="projects-holder">

@@ -21,6 +21,12 @@
     margin: 10px;
     font-size: 60px;
     font-weight: bold;
+    text-decoration: none;
+}
+
+.company-name:focus, :hover, :visited, :link, :active {
+    text-decoration: none;
+    color: chocolate;
 }
 .header-profile-img{
     width: 100px;
