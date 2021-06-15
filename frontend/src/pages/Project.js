@@ -14,16 +14,28 @@ import {fetchProject, fetchProjectsForUser, fetchReview, fetchUser, addReview} f
 //     project.rating++;
 // }
 
-const handleSubmit = async (project, inputValue, setProject) => {
+const handleSubmit = async (project, inputValue, setProject, setLoading) => {
     let new_review = {
-        content: inputValue,
+        content: "new review",
         mark: 1,
-        project: project.id,
+        project: "60c7a52035e6652af83b85df",
         creator: "60c8dcd8dbae632d8d3e11fb",
     }
+
     await addReview(new_review)
     const _project = await fetchProject("60c7a52035e6652af83b85df")
+
+    setLoading(true)
+    await addReview(new_review);
+    const _project = await fetchProject("60c7a52035e6652af83b85df");
+
+    _project.user = await fetchUser(project.creator);
+    _project.review_data = [_project.reviews.length]
+    for(let i = 0;i < _project.reviews.length; i++) {
+        _project.review_data[i] = await fetchReview(_project.reviews[i]);
+    }
     setProject(_project);
+    setLoading(false)
 }
 
 
@@ -39,7 +51,7 @@ const LeftBarGeneration = ({project, setProject}) => {
 
 }
 
-const RightBarGeneration = ({project, setProject}) => {
+const RightBarGeneration = ({project, setProject, setLoading}) => {
     const [inputValue, setInputValue] = useState("");
 
     return(
@@ -48,7 +60,7 @@ const RightBarGeneration = ({project, setProject}) => {
             <div className={"review-text-div"}><textarea className={"text-area"} placeholder={project.code}/></div>
             <div className={"comment-div"}>
                  <input className={"input-comment"} value={inputValue} onChange={(event) => {setInputValue(event.target.value)}} type="text" />
-                 <Button style={{textAlign: "left"}}  variant="info" onClick={() => handleSubmit(project, inputValue, setProject)} >Publish</Button>
+                 <Button style={{textAlign: "left"}}  variant="info" onClick={() => handleSubmit(project, inputValue, setProject, setLoading)} >Publish</Button>
             </div>
             {
                 project.review_data.map(review =>
@@ -97,7 +109,7 @@ const Project = () => {
                     :
                     <div className={"row"}>
                         <LeftBarGeneration project = {project} setProject = {setProject}/>
-                        <RightBarGeneration  project = {project} setProject = {setProject}/>
+                        <RightBarGeneration  project = {project} setProject = {setProject} setLoading = {setLoading}/>
                     </div>
                 }
             </div>
