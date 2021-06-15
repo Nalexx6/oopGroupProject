@@ -3,34 +3,16 @@ import "./Feed.css"
 import "./Header.css"
 import Header from "./Header";
 
-const temporary_project = [
-    {
-        user: "User1",
-        name: "Test1",
-        rating: 4.5,
-        count_review: 2
-    },
-    {
-        user: "User2",
-        name: "Test2",
-        rating: 3.2,
-        count_review: 3
-    },
-    {
-        user: "User3",
-        name: "Test3",
-        rating: 2.2,
-        count_review: 6
-    }
-]
+import {fetchProjectsForUser} from "../services/service";
 
-const CardGeneration = ({project}) => {
+
+const CardGeneration = ({project}, {user}) => {
     return(
         <div className={"main-div-card"}>
             <div className={"main-div-tools"}>
                 <div className={"card-profile-img"}/>
-                    <p className={"main-div-text"} style={{color: "#282c34"}}>{project.user} | {project.name}</p>
-                    <p className={"main-div-text"} style={{color: "#282c34", textAlign: "right"}}>{project.rating} | {project.count_review}</p>
+                    <p className={"main-div-text"} style={{color: "#282c34"}}>{project.user} | {project.title}</p>
+                    <p className={"main-div-text"} style={{color: "#282c34", textAlign: "right"}}>{project.rating} | {project.reviews.length}</p>
                 </div>
                 <div className={"main-div-tools"} style={{height: 150}}>
                     <p className={"main-div-text"} style={{color: "#282c34"}}>Review Count</p>
@@ -41,16 +23,19 @@ const CardGeneration = ({project}) => {
 }
 
 const Feed = () => {
-    // const [projects, setProjects] = useState(null)
-    // const [loading, setLoading] = useState(true);
-    // useEffect(
-    //     () => {
-    //         let arr = await getProject();
-    //         setLoading(false);
-    //         setProjects(arr);
-    //     },
-    //     []
-    // )
+    const [projects, setProjects] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+    useEffect ( () => {
+        const getProjectsForUser = async () => {
+            const arr = await fetchProjectsForUser()
+            setProjects(arr)
+            setLoading(false)
+        }
+        getProjectsForUser()
+        },
+        []
+    )
 
     return (
     <div>
@@ -66,11 +51,13 @@ const Feed = () => {
                 <div className={"col"}> <p className={"main-div-text"}>New and Popular Code:</p> </div>
                 <div className={"col"} style={{textAlign: "right"}}> <p className={"main-div-search"}>Search</p> </div>
             </div>
-            { temporary_project.map(
-                (p) => {
-                    return <CardGeneration project={p}/>
-                }
-            ) }
+            { loading ? <div className="company-name"> </div> :
+                projects.map(
+                    (p) => {
+                        return <CardGeneration   project={p}/>
+                    }
+                )
+            }
         </div>
     </div>
   );
