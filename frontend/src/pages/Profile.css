@@ -12,6 +12,9 @@
     background-color: chocolate;
     padding: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .main-content-right{
     width: 1000px;
@@ -34,12 +37,13 @@
     line-height: 55px;
 }
 
-.add-project-button{
+.project-button{
     width: 250px;
     height: 100px;
     background-color: #282c34;
     border-radius: 20px;
     margin: auto;
+    margin-top: 10px;
     text-align: center;
     line-height: 100px;
 }
@@ -64,6 +68,7 @@
     background-color: chocolate;
     margin: 20px;
     text-align: center;
+    
     display: flex;
     flex-direction: column;
     justify-content: space-around;

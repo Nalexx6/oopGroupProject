@@ -56,13 +56,18 @@ const Profile = () => {
                             <p className="add-project-text">Add project</p>
                         </div>
                     </Link>
+                    <Link to="/" >
+                        <div className="project-button">
+                                <p className="add-project-text">Log out</p>
+                        </div>
+                    </Link>
                 </div>
                 <div className="main-content-right">
                     <div className="projects-holder">
-                        { loading ? <div className="company-name"> Null </div> :
+                        { loading ? <div className="company-name"> </div> :
                             projects.map(
-                                (p) => {
-                                    return <ViewProject project={p}/>
+                                (project) => {
+                                    return <ViewProject project={project}/>
                                 }
                             )
                         }
