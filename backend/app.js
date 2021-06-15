@@ -17,11 +17,17 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/reviews', reviewRoutes)
 
-
-
 app.use((req, res, next) => {
     next(new HttpError('Could not find this route'), 404)
 });
+
+app.use((error, req, res, next) => {
+    if (res.headerSent) {
+      return next(error);
+    }
+    res.status(error.code || 500);
+    res.json({ message: error.message || 'An unknown error occurred!' });
+  });
 
 mongoose
     .connect('mongodb+srv://zolottareva:pidarpidaras@cluster0.dtktk.mongodb.net/core_tool?retryWrites=true&w=majority', { useNewUrlParser: true,  useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
@@ -31,6 +37,3 @@ mongoose
     .catch(err => {
         console.log(err);
     });
-
-// fetch("https://localhost:5000/api/projects/vcghsajdyhsjacuw")
-// .method("GET")
