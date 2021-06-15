@@ -4,7 +4,6 @@ import "./Header.css"
 import Header from "./Header";
 
 import {fetchProjectsForUser, fetchUser} from "../services/service";
-import {forEach} from "react-bootstrap/ElementChildren";
 
 
 const CardGeneration = ({project}) => {
@@ -29,12 +28,9 @@ const Feed = () => {
         useEffect ( () => {
         const getProjectsForUser = async () => {
             const _projects = await fetchProjectsForUser()
-            const _users = [];
             for(let i = 0;i < _projects.length; i++) {
-                _users[i] = fetchUser(_projects[i].creator);
-                _projects[i].user = _users[i];
+                _projects[i].user = await fetchUser(_projects[i].creator);
             }
-            console.log(_projects)
             setProjects(_projects)
             setLoading(false)
         }
