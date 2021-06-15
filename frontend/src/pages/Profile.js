@@ -9,24 +9,6 @@ const g = {
     rating: 3.47
 }
 
-// const temporary_project = [
-//     {
-//         name: "Test",
-//         rating: 4.5,
-//         count_review: 2
-//     },
-//     {
-//         name: "Test2",
-//         rating: 3.2,
-//         count_review: 3
-//     },
-//     {
-//         name: "Test2",
-//         rating: 3.2,
-//         count_review: 3
-//     }
-// ]
-
 const ViewProject = ({project}) => {
     return(
         <div className="project">
@@ -43,18 +25,12 @@ const Profile = () => {
 
     useEffect ( () => {
         const getProjectsForUser = async () => {
-            const arr = await fetchProjectsForUser()
-            setProjects(arr)
+            const _projects = await fetchProjectsForUser()
+            setProjects(_projects)
             setLoading(false)
         }
-        //
+
         getProjectsForUser()
-        // fetchProjectsForUser()
-        //     .then(items => {
-        //         setProjects(items)
-        //
-        //         // setLoading(false)
-        //     })
         },
         []
     )
