@@ -43,3 +43,14 @@ export async function addReview(review) {
     console.log(result)
     return result.review;
 }
+
+export async function editProject(project) {
+    let response = await fetch('http://localhost:5000/api/projects/' + project.id , {
+        headers: { 'Content-Type': 'application/json' },
+        method : 'PATCH',
+        body: JSON.stringify(project)
+    })
+    let result = await response.json();
+    console.log(result)
+    return result.review;
+}
