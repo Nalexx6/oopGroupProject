@@ -16,9 +16,9 @@ import {fetchProject, fetchProjectsForUser, fetchReview, fetchUser, addReview} f
 
 const handleSubmit = async (project, inputValue, setProject, setLoading) => {
     let new_review = {
-        content: "new review",
+        content: inputValue,
         mark: 1,
-        project: "60c7a52035e6652af83b85df",
+        project: project.id,
         creator: "60c8dcd8dbae632d8d3e11fb",
     }
 
