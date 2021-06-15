@@ -58,6 +58,7 @@ export async function editProject(project) {
 export async function loginUser(user) {
     let response = await fetch('http://localhost:5000/api/users/login',{
         headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
         body: JSON.stringify(user)
     })
 

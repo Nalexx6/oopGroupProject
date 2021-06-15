@@ -1,22 +1,15 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
 export const useAuth = () => {
-  const [userId, setUserId] = useState(null);
+  let userId = null;
 
-  const login = useCallback((uid) => {
-    setUserId(uid);
-    localStorage.setItem(
-      'userData',
-      JSON.stringify({
-        userId: uid,
-      })
-    );
-  }, []);
+  const login = (uid) => {
+    userId = uid;
+  };
 
-  const logout = useCallback(() => {
-    setUserId(null);
-    localStorage.removeItem('userData');
-  }, []);
+  const logout = () => {
+    userId = null;
+  };
 
   return { login, logout, userId };
 };

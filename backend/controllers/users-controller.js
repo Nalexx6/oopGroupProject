@@ -136,7 +136,7 @@ const login = async (req, res, next) => {
         return next(error)
     }
     res.json({ 
-        user: existingUser,
+        user: existingUser.toObject({getters: true }),
         token: token,
     })
 };
