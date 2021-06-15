@@ -96,7 +96,7 @@ const Project = () => {
                 { loading ?
                     <div>
                         <div className={"left-bar"}/>
-                        <div className={"right-bar"}>NULL</div>
+                        <div className={"right-bar"}></div>
                     </div>
                     :
                     <div style={{display: "flex", flexDirectionq: "row"}}>
