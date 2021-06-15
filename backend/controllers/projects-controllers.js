@@ -94,13 +94,13 @@ const createProject = async (req, res, next) => {
 
 const updateProject = async (req, res, next) => {
     const id = req.params.pid;
-    const { title, code, tags } = req.body;
+    const { title, code, tags, rating} = req.body;
     let project
     try{
         project = await Project.findById(id);
     } catch(err){
         const error = new HttpError(
-            'Something went wrong, could not update the place', 500
+            'Something went wrong, could not update the project', 500
         );
         return next(error);
     }
@@ -116,6 +116,7 @@ const updateProject = async (req, res, next) => {
     project.title = title;
     project.code = code;
     project.tags = tags;
+    project.rating = rating;
 
     try{
         await project.save();

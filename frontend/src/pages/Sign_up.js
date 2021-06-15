@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import Button from 'react-bootstrap/Button';
+import { AuthContext } from '../context/AuthContext';
 import Header from "./Header";
 import "./Sign_in.css"
 import "./Push_project.css"
@@ -7,7 +8,6 @@ import { Link } from 'react-router-dom';
 
 
 const Sign_up = () => {
-    
     return (
     <div>
         <div className="main1">
