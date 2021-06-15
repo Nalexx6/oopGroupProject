@@ -14,7 +14,7 @@ export async function fetchAllProjects() {
 
 
 export async function fetchUser(id) {
-    let response = await fetch('http://localhost:5000/api/projects/user/'+ id)
+    let response = await fetch('http://localhost:5000/api/users/'+ id)
     let result = await response.json();
     console.log(result)
     return result.user;
