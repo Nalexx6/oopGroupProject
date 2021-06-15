@@ -53,7 +53,7 @@ const Profile = () => {
                             <p className="add-project-text">Add project</p>
                         </div>
                     </Link>
-                    <Link to="/push_project" >
+                    <Link to="/" >
                         <div className="project-button">
                                 <p className="add-project-text">Log out</p>
                         </div>
