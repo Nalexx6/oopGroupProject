@@ -42,7 +42,6 @@ const Profile = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect ( () => {
-        alert("LOOOOOl")
 
         const getProjectsForUser = async () => {
             const arr = await fetchProjectsForUser()
