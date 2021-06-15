@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import "./Header.css"
 import "./Profile.css"
 import Header from "./Header"
 import {fetchProjectsForUser} from "../services/service";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext';
 
 const g = {
     name: "Dima Bernada",
@@ -23,10 +24,12 @@ const ViewProject = ({project}) => {
 }
 
 const Profile = () => {
+    const auth = useContext(AuthContext);
     const [projects, setProjects] = useState(null)
     const [loading, setLoading] = useState(true)
 
     useEffect ( () => {
+        console.log("in profile", auth.userId)
         const getProjectsForUser = async () => {
             const _projects = await fetchProjectsForUser()
             setProjects(_projects)
@@ -53,13 +56,18 @@ const Profile = () => {
                             <p className="add-project-text">Add project</p>
                         </div>
                     </Link>
+                    <Link to="/" >
+                        <div className="project-button">
+                                <p className="add-project-text">Log out</p>
+                        </div>
+                    </Link>
                 </div>
                 <div className="main-content-right">
                     <div className="projects-holder">
-                        { loading ? <div className="company-name"> Null </div> :
+                        { loading ? <div className="company-name"> </div> :
                             projects.map(
-                                (p) => {
-                                    return <ViewProject project={p}/>
+                                (project) => {
+                                    return <ViewProject project={project}/>
                                 }
                             )
                         }
