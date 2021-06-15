@@ -7,9 +7,18 @@ import Project from "./pages/Project";
 import Sign_in from "./pages/Sign_in"
 import Sign_up from './pages/Sign_up';
 
+import AuthContext from './context/AuthContext'
 function App() {
   return (
-    <Sign_up/>
+    <AuthContext.Provider
+      value={{
+        userId: userId,
+        login: login,
+        logout: logout
+      }}
+    >
+      <Sign_up/>
+    </AuthContext.Provider>
   );
 }
 

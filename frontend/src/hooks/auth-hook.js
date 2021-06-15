@@ -1,7 +1,7 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 
 export const useAuth = () => {
-  const [userId, setUserId] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   const login = useCallback((uid) => {
     setUserId(uid);
