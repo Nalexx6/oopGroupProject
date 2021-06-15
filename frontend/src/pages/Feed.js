@@ -9,19 +9,22 @@ import {fetchProjectsForUser, fetchUser} from "../services/service";
 
 const CardGeneration = ({project}) => {
     return(
-        <Link to="/project">
-            <div className={"main-div-card"}>
-                <div className={"main-div-tools"}>
-                    <div className={"card-profile-img"}/>
-                        <p className={"main-div-text"} style={{color: "#282c34"}}>{project.user.login} | {project.title}</p>
-                        <p className={"main-div-text"} style={{color: "#282c34", textAlign: "right"}}>{project.rating} | {project.reviews.length}</p>
+
+        <div className={"main-div-card"}>
+            <div className={"main-div-tools"}>
+                <div className={"card-profile-img"}/>
+                <Link to="/project">
+                    <div className={"main-div-tools"} style={{margin: "0"}}>
+                        <p className={"main-div-minor-text"} style={{textAlign: "left"}}>{project.user.login} | {project.title}</p>
                     </div>
-                    <div className={"main-div-tools"} style={{height: 150}}>
-                        <p className={"main-div-text"} style={{color: "#282c34"}}>Review Count</p>
-                    <div className={"card-description"}/>
-                </div>
+                </Link>
+                <p className={"main-div-minor-text"} style={{pointerEvents: "none"}}>{project.rating} ★ | Reviews Count: {project.reviews.length}</p>
             </div>
-        </Link>
+            <div className={"main-div-tools"}>
+                <div className={"card-description"}>{project.tags}</div>
+            </div>
+        </div>
+
     )
 }
 
@@ -48,16 +51,18 @@ const Feed = () => {
         { Header() }
         <div className={"main-div"}>
             <div className={"main-div-tools"}>
-                <div> <p className={"main-div-text"}>New and Popular Code:</p> </div>
-                <div style={{textAlign: "right"}}> <p className={"main-div-search"}>Search</p> </div>
+                <p className={"main-div-major-text"}>New and Popular Code:</p>
+                <p className={"main-div-search"}>Search</p>
             </div>
-            { loading ? <div className="company-name"> </div> :
-                projects.map(
-                    (p) => {
-                        return <CardGeneration   project={p}/>
-                    }
-                )
-            }
+            <div className={"card-holder"}>
+                { loading ? <div className="company-name"> </div> :
+                    projects.map(
+                        (p) => {
+                            return <CardGeneration   project={p}/>
+                        }
+                    )
+                }
+            </div>
         </div>
     </div>
   );

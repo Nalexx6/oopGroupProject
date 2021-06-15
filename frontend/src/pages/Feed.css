@@ -1,8 +1,24 @@
 .main-div-card{
     width: 1000px;
-    height: 200px;
+    height: 230px;
     background: chocolate;
     margin: auto auto 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-div-card:hover{
+    box-shadow:
+    1px 1px #53ea93,
+    2px 2px #53ea93,
+    3px 3px #53ea93,
+    4px 4px #53ea93,
+    5px 5px #53ea93,
+    6px 6px #53ea93,
+    7px 7px #53ea93;
+    -webkit-transform: translateX(-7px);
+    transform: translateX(-7px);
+    transition: all 500ms ease;
 }
 .main-div{
     margin: auto;
@@ -13,32 +29,58 @@
 
 .main-div-tools{
     display: flex;
-    align-items: center;
-
-}
-.main-div-text{
     margin: auto;
+}
+.main-div-minor-text{
+    color: #282c34;
+    font-size: 30px;
+    margin: 10px 5px 10px 5px;
+    width: 410px;
+    text-align: right;
+}
+
+.main-div-minor-text:hover{
+    color: wheat;
+    transition: all 500ms ease;
+}
+
+.main-div-major-text{
     color: chocolate;
     font-size: 30px;
-
-    display: flex;
-    align-items: center;
+    margin-left: 100px;
+    text-align: left;
+    width: 500px;
 }
 
 .main-div-search{
     color: chocolate;
     font-size: 30px;
-    margin: 0 55px;
+    height: 50px;
+    margin-right: 100px;
+    text-align: right;
+    width: 500px;
 }
 .card-profile-img{
     width: 50px;
     height: 50px;
     border-radius: 25px;
     background-color: #282c34;
+    margin: 10px 10px 10px;
+}
+
+.card-holder{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .card-description{
-    width: 700px;
-    height: 100px;
+    width: 850px;
+    height: 80px;
     background: wheat;
+    font-size: 20px;
+    color: #282c34;
+    margin: 10px;
+    padding: 10px 25px 10px 25px;
 }
