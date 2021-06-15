@@ -3,15 +3,16 @@ import "./Feed.css"
 import "./Header.css"
 import Header from "./Header";
 
-import {fetchProjectsForUser} from "../services/service";
+import {fetchProjectsForUser, fetchUser} from "../services/service";
+import {forEach} from "react-bootstrap/ElementChildren";
 
 
-const CardGeneration = ({project}, {user}) => {
+const CardGeneration = ({project}) => {
     return(
         <div className={"main-div-card"}>
             <div className={"main-div-tools"}>
                 <div className={"card-profile-img"}/>
-                    <p className={"main-div-text"} style={{color: "#282c34"}}>{project.user} | {project.title}</p>
+                    <p className={"main-div-text"} style={{color: "#282c34"}}>{project.user.login} | {project.title}</p>
                     <p className={"main-div-text"} style={{color: "#282c34", textAlign: "right"}}>{project.rating} | {project.reviews.length}</p>
                 </div>
                 <div className={"main-div-tools"} style={{height: 150}}>
@@ -25,13 +26,18 @@ const CardGeneration = ({project}, {user}) => {
 const Feed = () => {
     const [projects, setProjects] = useState(null)
     const [loading, setLoading] = useState(true)
-
-    useEffect ( () => {
+        useEffect ( () => {
         const getProjectsForUser = async () => {
-            const arr = await fetchProjectsForUser()
-            setProjects(arr)
+            const _projects = await fetchProjectsForUser()
+            const _users = [];
+            for(let i = 0;i < _projects.length; i++) {
+                _users[i] = fetchUser(_projects[i].creator);
+                _projects[i]['user'] = _users[i];
+            }
+            setProjects(_projects)
             setLoading(false)
         }
+
         getProjectsForUser()
         },
         []
