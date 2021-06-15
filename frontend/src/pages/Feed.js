@@ -46,10 +46,10 @@ const Feed = () => {
     return (
     <div>
         { Header() }
-        <div className={"main-div container"}>
-            <div className={"main-div-tools row"}>
-                <div className={"col"}> <p className={"main-div-text"}>New and Popular Code:</p> </div>
-                <div className={"col"} style={{textAlign: "right"}}> <p className={"main-div-search"}>Search</p> </div>
+        <div className={"main-div"}>
+            <div className={"main-div-tools"}>
+                <div> <p className={"main-div-text"}>New and Popular Code:</p> </div>
+                <div style={{textAlign: "right"}}> <p className={"main-div-search"}>Search</p> </div>
             </div>
             { loading ? <div className="company-name"> </div> :
                 projects.map(
