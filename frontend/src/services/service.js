@@ -12,6 +12,12 @@ export async function fetchAllProjects() {
     return result.projects;
 }
 
+export async function fetchProject(id) {
+    let response = await fetch('http://localhost:5000/api/projects/'+ id)
+    let result = await response.json();
+    console.log(result)
+    return result.project;
+}
 
 export async function fetchUser(id) {
     let response = await fetch('http://localhost:5000/api/users/'+ id)
