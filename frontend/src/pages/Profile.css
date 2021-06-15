@@ -64,6 +64,9 @@
     background-color: chocolate;
     margin: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .project-text{
     color: #282c34;
