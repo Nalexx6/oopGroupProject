@@ -58,6 +58,7 @@ const getReviewsByProjectId = async (req, res, next) => {
 
 const createReview = async (req, res, next) => {
     const { content, mark, project, creator } = req.body;
+    console.log("creator", req.body)
     const createdReview = new Review({
         content,
         mark,
@@ -72,7 +73,7 @@ const createReview = async (req, res, next) => {
         return next(error);
     }
     if(!user){
-        const error = new HttpError('Could not find user for the provided id', 404);
+        const error = new HttpError('Could not find user for the provided id - Because you Gay', 404);
         return next(error);
     }
 

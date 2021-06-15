@@ -35,6 +35,7 @@ export async function fetchReview(id) {
 
 export async function addReview(review) {
     let response = await fetch('http://localhost:5000/api/reviews', {
+        headers: { 'Content-Type': 'application/json' },
         method : 'POST',
         body: JSON.stringify(review)
     })
