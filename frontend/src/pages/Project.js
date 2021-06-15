@@ -19,10 +19,17 @@ const handleSubmit = async (project, inputValue, setProject) => {
         content: inputValue,
         mark: 1,
         project: project.id,
-        creator: project.creator,
+        creator: "60c8dcd8dbae632d8d3e11fb",
     }
     await addReview(new_review);
-    const _project = await fetchProject("60c7a52035e6652af83b85df")
+    const _project = await fetchProject("60c7a52035e6652af83b85df");
+
+    _project.user = await fetchUser(_project.creator);
+    alert(_project.user.id);
+    _project.review_data = [_project.reviews.length]
+    for(let i = 0;i < _project.reviews.length; i++) {
+        _project.review_data[i] = await fetchReview(_project.reviews[i]);
+    }
     setProject(_project);
 }
 
