@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import "./Feed.css"
 import "./Header.css"
 import Header from "./Header";
-import { Link } from 'react-router-dom';
-
+import { Link, useHistory } from 'react-router-dom';
+import {AuthContext} from "../context/AuthContext";
 import {fetchAllProjects, fetchUserById} from "../services/service";
 
 
@@ -29,21 +29,31 @@ const CardGeneration = ({project}) => {
 }
 
 const Feed = () => {
+    const auth = useContext(AuthContext)
     const [projects, setProjects] = useState(null)
     const [loading, setLoading] = useState(true)
+
+    let history = useHistory();
         useEffect ( () => {
-        const getProjectsForUser = async () => {
+
+            const checkForAuth = async () => {
+                if(auth.getUserId() == null){
+                    history.push("/")
+                }
+            }
+            const getProjectsForUser = async () => {
             const _projects = await fetchAllProjects()
             for(let i = 0;i < _projects.length; i++) {
                 _projects[i].user = await fetchUserById(_projects[i].creator);
             }
             setProjects(_projects)
             setLoading(false)
-        }
+            }
 
-        getProjectsForUser()
+            checkForAuth()
+            getProjectsForUser()
         },
-        []
+        [auth, history]
     )
 
     return (

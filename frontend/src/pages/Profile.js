@@ -56,7 +56,7 @@ const Profile = () => {
         checkForAuth()
         getUser()
         },
-        [auth]
+        [auth, history]
     )
     return (
 

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import "./Header.css"
 import "./Push_project.css"
 import Header from "./Header";
@@ -24,6 +24,16 @@ const Push_project = () => {
     const [inputCode, setInputCode] = useState("");
 
     let history = useHistory();
+
+    useEffect( () => {
+        const checkAuth = async () => {
+            if(auth.getUserId() == null){
+                history.push("/")
+            }
+        }
+        checkAuth()
+    }, [auth, history]
+    )
 
     return (
         <div>
