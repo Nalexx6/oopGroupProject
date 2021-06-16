@@ -94,9 +94,10 @@ body {
 .review-text-div{
     background: wheat;
     text-align: left;
+    width: 89%;
     padding: 10px 50px;
     height: 500px;
-    font-size: 30px;
+    font-size: 14px;
     color: #282c34;
     overflow-y: scroll;
 

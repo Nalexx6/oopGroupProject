@@ -30,7 +30,6 @@
     margin: auto;
 }
 .profile-text{
-    font-weight: bold;
     font-size: 60px;
     color: #282c34;
     margin: 20px;
@@ -61,7 +60,6 @@
     transition: all 500ms ease;
 }
 .add-project-text{
-    font-weight: bold;
     font-size: 30px;
     color: chocolate;
     margin: auto;
@@ -90,7 +88,6 @@
     color: #282c34;
     font-size: 30px;
     margin: 25px;
-    font-weight: bold;
 }
 .project:hover{
     box-shadow:
