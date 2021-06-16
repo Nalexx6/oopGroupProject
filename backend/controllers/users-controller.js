@@ -143,13 +143,13 @@ const login = async (req, res, next) => {
 
 const updateUserImage = async (req, res, next) => {
     const id = req.params.uid;
-    const { image } = req.body;
+    const { img } = req.body;
     let user
     try{
         user = await User.findById(id);
     } catch(err){
         const error = new HttpError(
-            'Something went wrong, could not update the project', 500
+            'Something went wrong, could not update the user', 500
         );
         return next(error);
     }
@@ -167,7 +167,7 @@ const updateUserImage = async (req, res, next) => {
         await user.save();
     } catch(err){
         const error = new HttpError(
-            'Something went wrong, could not update the place', 500
+            'Something went wrong, could not update the user', 500
         );
         return next(error);
     }
