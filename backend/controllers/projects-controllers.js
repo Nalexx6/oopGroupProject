@@ -96,7 +96,7 @@ const createProject = async (req, res, next) => {
 
 const updateProject = async (req, res, next) => {
     const id = req.params.pid;
-    const { title, description, code, tags, rating} = req.body;
+    const { title, description, code, tags } = req.body;
     let project
     try{
         project = await Project.findById(id);
@@ -118,7 +118,6 @@ const updateProject = async (req, res, next) => {
     project.title = title;
     project.code = code;
     project.tags = tags;
-    project.rating = (project.rating + parseInt(rating)) / 2;
 
     try{
         await project.save();
