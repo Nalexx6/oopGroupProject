@@ -28,6 +28,7 @@
 .company-name:hover{
     color: wheat;
     transition: all 500ms ease;
+    cursor: default;
 }
 
 .header-profile-img{
