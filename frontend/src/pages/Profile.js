@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import "./Header.css"
 import "./Profile.css"
 import Header from "./Header"
-import {fetchProjectsForUser, fetchUserById} from "../services/service";
+import {fetchProjectsForUser, fetchUserById, updateUserImg} from "../services/service";
 import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext';
 import {generateRandomAvatarData, getAvatarFromData} from "@fractalsoftware/random-avatar-generator";
@@ -12,10 +12,20 @@ const logoutHandle = (history, auth) => {
     history.push("/")
 }
 
-const UpdateUserImage = (user, setAvatar) => {
-    user.image = generateRandomAvatarData(8);
-    setAvatar(getAvatarFromData(user.image));
+const UpdateUserImage = (user, setAvatar, history) => {
+    user.image = generateRandomAvatarData(16, );
+    setAvatar(getAvatarFromData(user.image, "circle"));
+    updateUserImg(user);
 
+    history.push({
+        pathname : "/feed",
+        state : history.location.state
+    })
+
+    history.push({
+        pathname : "/profile",
+        state : history.location.state
+    })
 }
 
 const ViewProject = ({project, history}) => {
@@ -57,7 +67,7 @@ const Profile = () => {
             if(_projects == null){
                 setProjects([])
             }
-            setAvatar(getAvatarFromData(_user.image));
+            setAvatar(getAvatarFromData(_user.image, "circle"));
             setLoading(false)
         }
 
@@ -81,7 +91,7 @@ const Profile = () => {
                             <p className="profile-text">Rating: {user.rating.toFixed(2)}</p>
                         </div>
                     }
-                    <div className="project-button" onClick={() => UpdateUserImage(user, setAvatar)}>
+                    <div className="project-button" onClick={() => UpdateUserImage(user, setAvatar, history)}>
                             <p className="add-project-text">Update Avatar</p>
                     </div>
 

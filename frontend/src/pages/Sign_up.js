@@ -13,7 +13,7 @@ const handleSignUp = async (inputLogin, inputEmail, inputPassword, validation, a
         login: inputLogin,
         email: inputEmail,
         password: inputPassword,
-        image: generateRandomAvatarData(8)
+        image: generateRandomAvatarData(16)
     }
 
     let loggedUser = await signUpUser(user);
