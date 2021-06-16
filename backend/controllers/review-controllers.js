@@ -73,7 +73,7 @@ const createReview = async (req, res, next) => {
         return next(error);
     }
     if(!user){
-        const error = new HttpError('Could not find user for the provided id - Because you Gay', 404);
+        const error = new HttpError('Could not find user for the provided id', 404);
         return next(error);
     }
 
@@ -81,7 +81,7 @@ const createReview = async (req, res, next) => {
     try {
         projectCode = await Project.findById(project);
     } catch(err){
-        const error = new HttpError('Creating place failed, please try again later', 500);
+        const error = new HttpError('Creating review failed, please try again later', 500);
         return next(error);
     }
     if(!projectCode){
@@ -120,7 +120,7 @@ const updateReview = async (req, res, next) => {
         review = await Review.findById(id);
     } catch(err){
         const error = new HttpError(
-            'Something went wrong, could not update the place', 500
+            'Something went wrong, could not update the review', 500
         );
         return next(error);
     }
@@ -140,7 +140,7 @@ const updateReview = async (req, res, next) => {
         await review.save();
     } catch(err){
         const error = new HttpError(
-            'Something went wrong, could not update the place', 500
+            'Something went wrong, could not update the review', 500
         );
         return next(error);
     }
