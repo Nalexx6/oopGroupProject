@@ -14,7 +14,7 @@ const logoutHandle = (history, auth) => {
 
 const ViewProject = ({project, history}) => {
     return(
-            <div className="project" onClick={history.push({
+            <div className="project" onClick={() => history.push({
                     pathname : "/project",
                     state : project.id
                 })}>
