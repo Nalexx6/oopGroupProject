@@ -12,4 +12,6 @@ router.post('/login', usersController.login);
 
 router.post('/signup', usersController.signup);
 
+router.patch('/:uid', usersController.updateUserImage);
+
 module.exports = router;

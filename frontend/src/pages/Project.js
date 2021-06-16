@@ -145,27 +145,34 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
 }
 
 const Project = () => {
+    const auth = useContext(AuthContext);
 
     const [project, setProject] = useState(null)
     const [loading, setLoading] = useState(true)
 
     let history = useHistory();
         useEffect ( () => {
-        const getProjectForUser = async () => {
-            const _project = await fetchProject(history.location.state)
-            _project.user = await fetchUserById(_project.creator);
-            _project.review_data = [];
-            for(let i = 0,j = _project.reviews.length-1;i < _project.reviews.length; i++, j--) {
-                let review = await fetchReview(_project.reviews[i]);
-                review.user = await fetchUserById(review.creator);
-                _project.review_data.push(review);
+            const checkAuth = async () => {
+                if(auth.getUserId() == null){
+                    history.push("/")
+                }
             }
-            setProject(_project)
-            setLoading(false)
-        }
-        getProjectForUser()
+            const getProjectForUser = async () => {
+                const _project = await fetchProject(history.location.state)
+                _project.user = await fetchUserById(_project.creator);
+                _project.review_data = [];
+                for(let i = 0,j = _project.reviews.length-1;i < _project.reviews.length; i++, j--) {
+                    let review = await fetchReview(_project.reviews[i]);
+                    review.user = await fetchUserById(review.creator);
+                    _project.review_data.push(review);
+                }
+                setProject(_project)
+                setLoading(false)
+            }
+            checkAuth()
+            getProjectForUser()
         },
-        [history]
+        [auth, history]
     )
     return (
     <div>

@@ -77,9 +77,6 @@ export async function editReview(review){
     return result.review;
 }
 
-
-
-
 export async function loginUser(user) {
     let response = await fetch('http://localhost:5000/api/users/login',{
         headers: { 'Content-Type': 'application/json' },
@@ -97,6 +94,19 @@ export async function signUpUser(user) {
     let response = await fetch('http://localhost:5000/api/users/signup',{
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+    })
+
+    let result = await response.json();
+    console.log(result)
+    return result.user;
+
+}
+
+export async function updateUserImg(user) {
+    let response = await fetch('http://localhost:5000/api/users/' + user.id,{
+        headers: { 'Content-Type': 'application/json' },
+        method: 'PATCH',
         body: JSON.stringify(user)
     })
 
