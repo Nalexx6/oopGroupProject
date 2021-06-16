@@ -129,6 +129,7 @@ const updateProject = async (req, res, next) => {
     }
     res.status(200).json({project: project.toObject({ getters: true })});
 }
+
 const addMark = async (req, res, next) => {
     const id = req.params.pid;
     const { mark } = req.body;
@@ -153,8 +154,42 @@ const addMark = async (req, res, next) => {
         );
         return next(error);
     }
+
+    let creator
+    try{
+        creator = await User.findById(project.creator);
+    } catch(err){
+        const error = new HttpError(
+            'Something went wrong, could not update mark', 500
+        );
+        return next(error);
+    }
+
+    let projects;
+    try{
+        projects = await Project.find( {creator: creator.id} );
+    } catch(err){
+        const error = new HttpError('Fetching projects failed, please try again later', 500);
+        return next(error);
+    }
+
+    let newUserRating = 0;
+    projects.forEach(p => newUserRating += p.rating);
+    newUserRating /= projects.length;
+    console.log("rating: ", newUserRating);
+    creator.rating = newUserRating;
+
+    try{
+        await creator.save();
+    } catch(err){
+        const error = new HttpError(
+            'Something went wrong, could not update the place', 500
+        );
+        return next(error);
+    }
     res.status(200).json({project: project.toObject({ getters: true })});
 }
+
 const deleteProject = async (req, res, next) => {
     const id = req.params.pid;
 
