@@ -54,14 +54,16 @@ const getProjectsByUserId = async (req, res, next) => {
 }
 
 const createProject = async (req, res, next) => {
-    const { title, code, tags, creator } = req.body;
+    const { title, description, code, tags, creator } = req.body;
     const createdProject = new Project({
         title, 
+        description,
         code, 
         tags, 
         rating: 0,
         reviews: [],
-        creator
+        marksNumber: 0,
+        creator,
     })
     let user;
     try {
@@ -94,7 +96,7 @@ const createProject = async (req, res, next) => {
 
 const updateProject = async (req, res, next) => {
     const id = req.params.pid;
-    const { title, code, tags, rating} = req.body;
+    const { title, description, code, tags, rating} = req.body;
     let project
     try{
         project = await Project.findById(id);
@@ -112,11 +114,37 @@ const updateProject = async (req, res, next) => {
     //     )
     //     return next(error);
     // }
-
+    project.description = description;
     project.title = title;
     project.code = code;
     project.tags = tags;
     project.rating = (project.rating + parseInt(rating)) / 2;
+
+    try{
+        await project.save();
+    } catch(err){
+        const error = new HttpError(
+            'Something went wrong, could not update the place', 500
+        );
+        return next(error);
+    }
+    res.status(200).json({project: project.toObject({ getters: true })});
+}
+const addMark = async (req, res, next) => {
+    const id = req.params.pid;
+    const { mark } = req.body;
+    let project
+    try{
+        project = await Project.findById(id);
+    } catch(err){
+        const error = new HttpError(
+            'Something went wrong, could not update mark', 500
+        );
+        return next(error);
+    }
+    project.marksNumber = project.marksNumber + 1
+    let newRating = (project.rating * (project.marksNumber - 1) + parseInt(mark))/ project.marksNumber
+    project.rating = newRating;
 
     try{
         await project.save();
@@ -158,10 +186,10 @@ const deleteProject = async (req, res, next) => {
     try {
       const sess = await mongoose.startSession();
       sess.startTransaction();
+
       await project.remove({ session: sess });
       project.creator.projects.pull(project);
       await project.creator.save({ session: sess });
-
 
       await sess.commitTransaction();
     } catch (err) {
@@ -180,3 +208,4 @@ exports.getProjectsByUserId = getProjectsByUserId;
 exports.createProject = createProject;
 exports.updateProject = updateProject;
 exports.deleteProject = deleteProject;
+exports.addMark = addMark;
