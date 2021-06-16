@@ -6,9 +6,10 @@ import { useHistory } from 'react-router-dom';
 import {addProject} from "../services/service";
 import {AuthContext} from "../context/AuthContext";
 
-const handleSubmit = async (inputTitle, inputCode, history, auth) => {
+const handleSubmit = async (inputTitle, inputDescription, inputCode, history, auth) => {
     let new_project = {
         title: inputTitle,
+        description: inputDescription,
         code: inputCode,
         tags : [],
         creator: auth.getUserId(),
@@ -21,6 +22,7 @@ const handleSubmit = async (inputTitle, inputCode, history, auth) => {
 const Push_project = () => {
     const auth = useContext(AuthContext);
     const [inputTitle, setInputTitle] = useState("");
+    const [inputDescription, setInputDescription] = useState("");
     const [inputCode, setInputCode] = useState("");
 
     let history = useHistory();
@@ -46,9 +48,14 @@ const Push_project = () => {
                             <input className={"input-data"} value={inputTitle}
                                    onChange={(event) => {setInputTitle(event.target.value)}} type="text" />
                         </div>
+                        <div>
+                            <label className={"input-label"}>Description</label>
+                            <input className={"input-data"} value={inputDescription}
+                                   onChange={(event) => {setInputDescription(event.target.value)}} type="text" />
+                        </div>
 
                             <button className={"project-button"}
-                                onClick={() => handleSubmit(inputTitle, inputCode, history, auth)}>
+                                onClick={() => handleSubmit(inputTitle, inputDescription, inputCode, history, auth)}>
                                 <p className={"add-project-text"}>Push project</p>
                             </button>
                     </div>
