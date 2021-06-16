@@ -2,14 +2,10 @@ import React, { useEffect, useState, useContext } from 'react';
 import "./Header.css"
 import "./Profile.css"
 import Header from "./Header"
-import {fetchProjectsForUser} from "../services/service";
-import { Link } from 'react-router-dom'
+import {fetchProjectsForUser, fetchUserById} from "../services/service";
+import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext';
 
-const g = {
-    name: "Dima Bernada",
-    rating: 3.47
-}
 
 const ViewProject = ({project}) => {
     return(
@@ -27,16 +23,25 @@ const Profile = () => {
     const auth = useContext(AuthContext);
     const [projects, setProjects] = useState(null)
     const [loading, setLoading] = useState(true)
-    let uid = auth.getUserId()
-    console.log("in profile", uid)
+    const [user, setUser] = useState(null)
+
+    let history = useHistory();
+
+
     useEffect (() => {
-        const getProjectsForUser = async () => {
-            const _projects = await fetchProjectsForUser()
+        const getUser = async () => {
+            const _user = await fetchUserById(auth.getUserId())
+            setUser(_user)
+
+            const _projects = await fetchProjectsForUser(auth.getUserId())
             setProjects(_projects)
+            if(_projects == null){
+                setProjects([])
+            }
             setLoading(false)
         }
 
-        getProjectsForUser()
+        getUser()
         },
         []
     )
@@ -49,13 +54,12 @@ const Profile = () => {
                 <div className="main-content-left">
                     <div className="profile-img">
                     </div>
-                    <p className="profile-text">{ g.name }</p>
-                    <p className="profile-text">Rating: { g.rating }</p>
-                    <Link to="/push_project" >
-                        <div className="add-project-button">
+                    {/*<p className="profile-text">{ user.login }</p>*/}
+                    {/*<p className="profile-text">Rating: { user.rating }</p>*/}
+                        <div className="add-project-button" onClick={history.push("/push_project")}>
                             <p className="add-project-text">Add project</p>
                         </div>
-                    </Link>
+
                     <Link to="/" >
                         <div className="project-button">
                                 <p className="add-project-text">Log out</p>

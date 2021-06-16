@@ -4,7 +4,7 @@ import "./Header.css"
 import Header from "./Header";
 import { Link } from 'react-router-dom';
 
-import {fetchProjectsForUser, fetchUser} from "../services/service";
+import {fetchAllProjects, fetchUserById} from "../services/service";
 
 
 const CardGeneration = ({project}) => {
@@ -33,9 +33,9 @@ const Feed = () => {
     const [loading, setLoading] = useState(true)
         useEffect ( () => {
         const getProjectsForUser = async () => {
-            const _projects = await fetchProjectsForUser()
+            const _projects = await fetchAllProjects()
             for(let i = 0;i < _projects.length; i++) {
-                _projects[i].user = await fetchUser(_projects[i].creator);
+                _projects[i].user = await fetchUserById(_projects[i].creator);
             }
             setProjects(_projects)
             setLoading(false)
