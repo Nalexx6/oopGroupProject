@@ -100,8 +100,6 @@ body {
     font-size: 14px;
     color: #282c34;
     overflow-y: scroll;
-
-    white-space: pre-line;
 }
 
 .comment-div{
