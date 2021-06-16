@@ -10,22 +10,23 @@ import {getAvatarFromData} from "@fractalsoftware/random-avatar-generator";
 
 const CardGeneration = (project) => {
     let history = useHistory();
-    let avatar = getAvatarFromData(project.user.image, "circle");
+
+    let avatar = getAvatarFromData(project.project.user.image, "circle");
     return(
 
         <div className={"main-div-card"}>
             <div className={"main-div-tools"}>
-                <img className="header-profile-img" src={`data:image/svg+xml;base64,${btoa(avatar)}`}/>
-                <div className={"card-profile-img"}/>
+                <img className="card-profile-img" src={`data:image/svg+xml;base64,${btoa(avatar)}`}/>
                     <div className={"main-div-tools"} style={{margin: "0"}}
                          onClick={() => history.push({
                              pathname : "/project",
-                             state : project.id
+                             state : project.project.id
                          })}>
-                        <p className={"main-div-minor-text"} style={{textAlign: "left"}}>{project.user.login} | {project.user.rating.toFixed(2)} | {project.title}</p>
+                        <p className={"main-div-minor-text"} style={{textAlign: "left"}}>
+                            {project.project.user.login} | {project.project.user.rating.toFixed(2)} | {project.title}</p>
                     </div>
                 <p className={"main-div-minor-text"} style={{pointerEvents: "none"}}>
-                    {project.rating.toFixed(2)} ★ | Reviews Count: {project.reviews.length}</p>
+                    {project.project.rating.toFixed(2)} ★ | Reviews Count: {project.project.reviews.length}</p>
             </div>
             <div className={"main-div-tools"}>
                 <div className={"card-description"}>{project.description}</div>
@@ -51,7 +52,6 @@ const Feed = () => {
             const _projects = await fetchAllProjects()
             for(let i = 0;i < _projects.length; i++) {
                 _projects[i].user = await fetchUserById(_projects[i].creator);
-
             }
             setProjects(_projects)
             setLoading(false)

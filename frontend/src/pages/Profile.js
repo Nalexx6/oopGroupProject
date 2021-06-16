@@ -15,7 +15,6 @@ const logoutHandle = (history, auth) => {
 const UpdateUserImage = async (user, setAvatar) => {
     user.image = generateRandomAvatarData(16);
     setAvatar(getAvatarFromData(user.image, "circle"));
-    console.log(user);
     await updateUserImg(user);
 
 }
@@ -52,7 +51,6 @@ const Profile = () => {
         const getUser = async () => {
             const _user = await fetchUserById(auth.getUserId())
             setUser(_user)
-            console.log(_user)
 
             const _projects = await fetchProjectsForUser(auth.getUserId())
             setProjects(_projects)

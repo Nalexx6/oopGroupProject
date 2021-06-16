@@ -99,7 +99,6 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
     const auth = useContext(AuthContext);
     const [inputValue, setInputValue] = useState("");
     const [inputRank, setInputRank] = useState(5);
-    console.log(project.review_data);
 
     let history = useHistory();
 
