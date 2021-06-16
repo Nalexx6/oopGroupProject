@@ -5,15 +5,17 @@ import Header from "./Header";
 import { useHistory } from 'react-router-dom';
 import {AuthContext} from "../context/AuthContext";
 import {fetchAllProjects, fetchUserById} from "../services/service";
+import {getAvatarFromData} from "@fractalsoftware/random-avatar-generator";
 
 
-const CardGeneration = ({project}) => {
+const CardGeneration = (project) => {
     let history = useHistory();
-
+    let avatar = getAvatarFromData(project.user.image);
     return(
 
         <div className={"main-div-card"}>
             <div className={"main-div-tools"}>
+                <img className="header-profile-img" src={`data:image/svg+xml;base64,${btoa(avatar)}`}/>
                 <div className={"card-profile-img"}/>
                     <div className={"main-div-tools"} style={{margin: "0"}}
                          onClick={() => history.push({
@@ -37,7 +39,6 @@ const Feed = () => {
     const auth = useContext(AuthContext)
     const [projects, setProjects] = useState(null)
     const [loading, setLoading] = useState(true)
-
     let history = useHistory();
         useEffect ( () => {
 
@@ -50,6 +51,7 @@ const Feed = () => {
             const _projects = await fetchAllProjects()
             for(let i = 0;i < _projects.length; i++) {
                 _projects[i].user = await fetchUserById(_projects[i].creator);
+
             }
             setProjects(_projects)
             setLoading(false)

@@ -1,11 +1,30 @@
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "./Header.css"
 import { Link, useHistory } from "react-router-dom";
+import {AuthContext} from "../context/AuthContext";
+import {fetchProjectsForUser, fetchUserById} from "../services/service";
+import {getAvatarFromData} from "@fractalsoftware/random-avatar-generator";
 
 const Header = () => {
+    const [avatar, setAvatar] = useState(null)
+    const [loading, setLoading] = useState(true)
+
 
     let history = useHistory();
+    const auth = useContext(AuthContext);
 
+    useEffect (() => {
+        const getUser = async () => {
+            const _user = await fetchUserById(auth.getUserId())
+
+            setAvatar(getAvatarFromData(_user.image));
+            setLoading(false)
+        }
+
+        getUser()
+        },
+        [auth, history]
+    )
 
     return(
         <div className="future-header">
@@ -18,8 +37,7 @@ const Header = () => {
                     <p className={"company-name"} style={{pointerEvents: "none"}}>|</p>
                     <div className="company-name" onClick={() => history.push("/profile")}> Profile</div>
                     
-                    <div className="header-profile-img">
-                    </div>
+                    <img className="header-profile-img" src={`data:image/svg+xml;base64,${btoa(avatar)}`}/>
                 </div>
             </div>
         </div>

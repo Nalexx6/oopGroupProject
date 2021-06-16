@@ -141,7 +141,41 @@ const login = async (req, res, next) => {
     })
 };
 
+const updateUserImage = async (req, res, next) => {
+    const id = req.params.uid;
+    const { img } = req.body;
+    let user
+    try{
+        user = await User.findById(id);
+    } catch(err){
+        const error = new HttpError(
+            'Something went wrong, could not update the project', 500
+        );
+        return next(error);
+    }
+
+    // if(project.creator.toString() !== req.userData.userId){
+    //     const error = new HttpError(
+    //         'You are not allowed to edit this place.',
+    //         401
+    //     )
+    //     return next(error);
+    // }
+    user.img = img;
+
+    try{
+        await user.save();
+    } catch(err){
+        const error = new HttpError(
+            'Something went wrong, could not update the place', 500
+        );
+        return next(error);
+    }
+    res.status(200).json({user: user.toObject({ getters: true })});
+}
+
 exports.getUserById = getUserById;
 exports.getUsers = getUsers;
 exports.signup = signup;
 exports.login = login;
+exports.updateUserImage = updateUserImage;
