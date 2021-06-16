@@ -44,13 +44,25 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
         <div className={"right-bar"}>
             <div className={"main-div-tools"}>
                 <p className={"review-text"}>{project.title} </p>
-                <p className={"review-rating"} >Rating: {project.rating}/5</p>
+                <p className={"review-rating"} >Rating: {project.rating} ★</p>
             </div>
             <div className={"review-text-div"}><div className={"code-area"}/> {project.code} </div>
-            <p className={"review-text"}>Author: {project.user.login}</p>
+            <div className={"main-div-tools"}>
+                <p className={"review-text"} style={{marginBottom: "30px", width: "900px"}}>Author: {project.user.login}</p>
+                <div className={"rate-div"}>
+                    <select className={"rate-select"}>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                    </select>
+                    <Button  className="review-rate-button" variant="success">Rate</Button>
+                </div>
+            </div>
             <div className={"comment-div"}>
-                 <input className={"input-comment"} value={inputValue} onChange={(event) => {setInputValue(event.target.value)}} type="text" />
-                 <Button style={{textAlign: "left"}}  variant="info" onClick={() => handleSubmit(project, inputValue, setProject, setLoading)} >Publish</Button>
+                 <textarea className={"input-comment"} value={inputValue} onChange={(event) => {setInputValue(event.target.value)}} type="text" />
+                 {/*<Button style={{textAlign: "left"}}  variant="info" onClick={() => handleSubmit(project, inputValue, setProject, setLoading)} >Publish</Button>*/}
             </div>
             {
                 project.review_data.map(review =>
