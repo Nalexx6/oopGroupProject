@@ -9,7 +9,8 @@ import {loginUser} from "../services/service";
 
 const handleLogin = async (inputLogin, inputPassword, setInputLogin, setInputPassword, history, auth) => {
     let user =  {
-        login : inputLogin,
+        // TODO change to login 
+        email : inputLogin,
         password : inputPassword
     }
 
