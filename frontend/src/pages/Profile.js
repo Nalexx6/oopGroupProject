@@ -43,7 +43,7 @@ const Profile = () => {
 
         getUser()
         },
-        []
+        [auth]
     )
     return (
 
@@ -54,9 +54,9 @@ const Profile = () => {
                 <div className="main-content-left">
                     <div className="profile-img">
                     </div>
-                    {/*<p className="profile-text">{ user.login }</p>*/}
-                    {/*<p className="profile-text">Rating: { user.rating }</p>*/}
-                        <div className="add-project-button" onClick={history.push("/push_project")}>
+                    <p className="profile-text">{ user.login }</p>
+                    <p className="profile-text">Rating: { user.rating }</p>
+                        <div className="add-project-button" onClick={() => history.push("/push_project")}>
                             <p className="add-project-text">Add project</p>
                         </div>
 
