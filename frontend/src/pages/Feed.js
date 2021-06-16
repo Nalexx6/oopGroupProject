@@ -69,7 +69,6 @@ const Feed = () => {
         <div className={"main-div"}>
             <div className={"main-div-tools"}>
                 <p className={"main-div-major-text"}>New and Popular Code:</p>
-                <p className={"main-div-search"}>Search</p>
             </div>
             <div className={"card-holder"}>
                 { loading ? <div className="company-name"> </div> :
