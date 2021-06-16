@@ -3,7 +3,7 @@ import "./Header.css"
 import "./Profile.css"
 import Header from "./Header"
 import {fetchProjectsForUser, fetchUserById} from "../services/service";
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext';
 
 const logoutHandle = (history, auth) => {
@@ -12,15 +12,16 @@ const logoutHandle = (history, auth) => {
 }
 
 
-const ViewProject = ({project}) => {
+const ViewProject = ({project, history}) => {
     return(
-        <Link to="/project">
-            <div className="project">
+            <div className="project" onClick={history.push({
+                    pathname : "/project",
+                    state : project.id
+                })}>
                 <p className="project-text">{ project.title }</p>
                 <p className="project-text">Rating: { project.rating }</p>
                 <p className="project-text">Reviews: { project.reviews.length }</p>
             </div>
-        </Link>
     )
 }
 
@@ -87,7 +88,7 @@ const Profile = () => {
                         { loading ? <div className="company-name"> </div> :
                             projects.map(
                                 (project) => {
-                                    return <ViewProject project={project}/>
+                                    return <ViewProject project={project} history={history}/>
                                 }
                             )
                         }
