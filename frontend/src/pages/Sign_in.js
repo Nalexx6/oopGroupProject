@@ -7,28 +7,23 @@ import { Link, useHistory } from 'react-router-dom';
 import {AuthContext} from "../context/AuthContext";
 import {loginUser} from "../services/service";
 
-const handleLogin = async (inputLogin, inputPassword, history, auth) => {
+const handleLogin = async (inputLogin, inputPassword, setInputLogin, setInputPassword, history, auth) => {
     let user =  {
         email : inputLogin,
         password : inputPassword
     }
 
-    // useEffect ( () => {
-    //     const loginUser = async () => {
-    // setLoading(true)
     let loggedUser = await loginUser(user);
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    console.log("logged", loggedUser.id)
-    auth.login(loggedUser.id);
-    console.log(auth.userId)
 
-    history.push("/profile");
-    // setLoading(false)
-    //     }
-    //     loginUser();
-    // }, []
-    // )
+    if(loggedUser != null) {
+        auth.login(loggedUser.id);
+        history.push("/profile");
+    } else {
+        setInputLogin("");
+        setInputPassword("");
+    }
+
 }
 
 const Sign_in = () => {
@@ -57,7 +52,8 @@ const Sign_in = () => {
                                 onChange={(event) => {setInputPassword(event.target.value)}} type="text" />
                         <div className="submit">
                             <Button className="button" variant="success"
-                                onClick={() => handleLogin(inputLogin, inputPassword, history, auth)} >Sign In</Button>
+                                onClick={() => handleLogin(inputLogin, inputPassword,
+                                    setInputLogin, setInputPassword, history, auth)} >Sign In</Button>
                             <Link to="/sign_up"><Button className="button" variant="success" >Sign Up</Button></Link>
                         </div>
                     </div>
