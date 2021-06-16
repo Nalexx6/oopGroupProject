@@ -62,6 +62,8 @@ const rankProject = async (project, mark, history) => {
 
 
 const handleSubmit = async (project, inputValue, setProject, setLoading, auth) => {
+    if(inputValue === "")
+        return;
     let new_review = {
         content: inputValue,
         project: project.id,
@@ -115,7 +117,7 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
                 <pre>{project.code} </pre>
             </plaintext>
             <div className={"main-div-tools"}>
-                <p className={"review-text"} style={{marginBottom: "30px", width: "900px"}}>Author: {project.user.login}</p>
+                <p className={"review-text"} style={{marginBottom: "30px", width: "850px"}}>Author: {project.user.login}</p>
                 <div className={"rate-div"}>
                     <select className={"rate-select"} value={inputRank}
                             onChange={(event) => {setInputRank(event.target.value)}}>
@@ -125,15 +127,19 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
                             <option>4</option>
                             <option>5</option>
                     </select>
-                    <Button  className="review-rate-button" variant="success"
+                    <Button  className="review-rate-button"
                              onClick={() => rankProject(project, inputRank, history)}>Rate</Button>
                 </div>
             </div>
             <div className={"input-comment-div"}>
+                <div>
                  <textarea className={"input-comment"} value={inputValue}
                          onChange={(event) => {setInputValue(event.target.value)}} type="text"/>
+                </div>
+                <div className={"input-comment-right-side"}>
                  <Button style={{textAlign: "center"}} className={"submit-button"}  variant="success"
                          onClick={() => handleSubmit(project, inputValue, setProject, setLoading, auth)} >Publish</Button>
+                </div>
             </div>
             {
                 project.review_data.map(review =>

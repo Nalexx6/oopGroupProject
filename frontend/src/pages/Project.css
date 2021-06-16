@@ -22,8 +22,9 @@
 .submit-button{
     background: #0a68ff;
     width: 100px;
-    height: 20px;
+    height: 30px;
     border: none;
+    color: white;
 }
 
 .main-div-tools{
@@ -50,19 +51,25 @@
     display: flex;
     text-align: right;
     margin-bottom: 30px;
+    width: 150px;
 }
 
 .rate-div button{
     display: inline-block;
     text-align: start;
 }
-.review-rate-button{
 
+.review-rate-button{
     height: 50px;
     background-color: chocolate;
     color: #282c34;
     font-size: 20px;
     font-weight: bold;
+    border: none;
+    width: 65px;
+    margin-left: 15px;
+    padding: 10px;
+    border-radius: 2px;
 }
 
 .review-text{
@@ -151,20 +158,32 @@ body {
 
 }
 
+.input-comment-right-side{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
 .input-comment-div{
+    display: flex;
+    flex-direction: row;
     background: white;
     border-radius: 15px;
     margin-bottom: 50px;
-    max-width: 900px;
+    width: 900px;
+    height: 100px;
     margin-left: 50px;
 }
 
 .input-comment{
     resize: none;
     font-size: 20px;
-    width: 750px;
-    min-height: 100px;
-    border-radius: 10px 10px 0 0;
+    width: 770px;
+    min-height: 70px;
+    border-radius: 10px 0 0 10px;
+    border: none;
+    border-right: 1px solid #282c34;
     padding: 14px;
     word-wrap: break-word;
 }
