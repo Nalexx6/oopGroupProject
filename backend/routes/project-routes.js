@@ -18,6 +18,8 @@ router.post('/', projectsControllers.createProject);
 
 router.patch('/:pid', projectsControllers.updateProject);
 
+router.patch('/mark/:pid', projectsControllers.addMark);
+
 router.delete('/:pid', projectsControllers.deleteProject);
 
 module.exports = router;
