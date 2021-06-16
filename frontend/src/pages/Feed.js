@@ -23,7 +23,7 @@ const CardGeneration = (project) => {
                              state : project.project.id
                          })}>
                         <p className={"main-div-minor-text"} style={{textAlign: "left"}}>
-                            {project.project.user.login} | {project.project.user.rating.toFixed(2)} | {project.title}</p>
+                            {project.project.user.login} | {project.project.user.rating.toFixed(2)} | {project.project.title}</p>
                     </div>
                 <p className={"main-div-minor-text"} style={{pointerEvents: "none"}}>
                     {project.project.rating.toFixed(2)} ★ | Reviews Count: {project.project.reviews.length}</p>
@@ -40,6 +40,7 @@ const Feed = () => {
     const auth = useContext(AuthContext)
     const [projects, setProjects] = useState(null)
     const [loading, setLoading] = useState(true)
+    let map
     let history = useHistory();
         useEffect ( () => {
 
@@ -71,14 +72,24 @@ const Feed = () => {
                 <p className={"main-div-major-text"}>New and Popular Code:</p>
             </div>
             <div className={"card-holder"}>
-                { loading ? <div className="company-name"> </div> :
+                {  loading ? <div className="company-name"> </div> :
                     projects.map(
                         (p) => {
-                            return <CardGeneration   project={p}/>
+                            return <CardGeneration project={p}/>
                         }
-                    )
+                    ).reverse()
                 }
+
             </div>
+            {/*<div className={"main-div-tools"}>*/}
+            {/*    { loading ? <div className="company-name"> </div> :*/}
+            {/*        projects.map(*/}
+            {/*            (p) => {*/}
+            {/*                return <PaginationGeneration   project={p}/>*/}
+            {/*            }*/}
+            {/*        )*/}
+            {/*    }*/}
+            {/*</div>*/}
         </div>
     </div>
   );

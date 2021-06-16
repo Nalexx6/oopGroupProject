@@ -138,13 +138,19 @@ body {
 }
 
 .comment-text{
+    margin: 0;
     width: 750px;
-    height: 80px;
+    height: 100%;
+    min-height: 100px;
+    max-width: 750px;
     background: wheat;
     font-size: 20px;
     color: #282c34;
     padding: 10px 25px 10px 25px;
     border-radius: 0 10px 10px 0;
+    overflow-x:hidden;
+    word-wrap: break-word;
+
 }
 
 .input-comment-div{
@@ -157,8 +163,10 @@ body {
 
 .input-comment{
     resize: none;
-    width: 870px;
+    font-size: 20px;
+    width: 750px;
     min-height: 100px;
     border-radius: 10px 10px 0 0;
     padding: 14px;
+    word-wrap: break-word;
 }

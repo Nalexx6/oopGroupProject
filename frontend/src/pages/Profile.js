@@ -13,7 +13,9 @@ const logoutHandle = (history, auth) => {
 }
 
 const UpdateUserImage = async (user, setAvatar) => {
-    user.image = generateRandomAvatarData(16);
+    if(user.login === "jeka")
+        user.image = generateRandomAvatarData(2);
+    else user.image = generateRandomAvatarData(16);
     setAvatar(getAvatarFromData(user.image, "circle"));
     await updateUserImg(user);
 

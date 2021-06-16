@@ -72,14 +72,17 @@ const handleSubmit = async (project, inputValue, setProject, setLoading, auth) =
     await addReview(new_review);
     const _project = await fetchProject(project.id);
 
-    _project.user = await fetchUserById(project.creator);
-    _project.review_data = [_project.reviews.length]
+    project.reviews.push(_project.reviews[_project.reviews.length-1])
 
-    for(let i = 0,j = _project.reviews.length-1;i < _project.reviews.length; i++, j--) {
-        _project.review_data[j] = await fetchReview(_project.reviews[i]);
-        _project.review_data[j].user = await fetchUserById(_project.review_data[j].creator);
-    }
-    setProject(_project);
+    let review = await fetchReview(project.reviews[project.reviews.length-1]);
+    project.review_data.push(review)
+    project.review_data[project.review_data.length-1].user = new_review.creator
+    // for(let i = 0;i < _project.reviews.length; i++) {
+    //     _project.review_data[j] = await fetchReview(_project.reviews[i]);
+    //     _project.review_data[j].user = await fetchUserById(_project.review_data[j].creator);
+    // }
+    //setProject(_project);
+
     setLoading(false)
 }
 
@@ -108,7 +111,7 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
                 <p className={"review-text"}>{project.title} </p>
                 <p className={"review-rating"} >Rating: {project.rating.toFixed(2)} ★</p>
             </div>
-            <plaintext className={"review-text-div"}> 
+            <plaintext className={"review-text-div"}>
                 <pre>{project.code} </pre>
             </plaintext>
             <div className={"main-div-tools"}>
@@ -136,8 +139,8 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
                 project.review_data.map(review =>
                     <div className={"comment-div"} key={review.id}>
                         <LeftBarGeneration review={review} history={history} />
-                        <div className={"comment-text"}>{review.content}</div>
-                    </div>)
+                        <textarea disabled className={"comment-text"}>{review.content}</textarea>
+                    </div>).reverse()
             }
         </div>
     )
@@ -160,7 +163,7 @@ const Project = () => {
                 const _project = await fetchProject(history.location.state)
                 _project.user = await fetchUserById(_project.creator);
                 _project.review_data = [];
-                for(let i = 0,j = _project.reviews.length-1;i < _project.reviews.length; i++, j--) {
+                for(let i = 0;i < _project.reviews.length; i++) {
                     let review = await fetchReview(_project.reviews[i]);
                     review.user = await fetchUserById(review.creator);
                     _project.review_data.push(review);
@@ -171,7 +174,7 @@ const Project = () => {
             checkAuth()
             getProjectForUser()
         },
-        [auth, history]
+        [auth, history, loading]
     )
     return (
     <div>
