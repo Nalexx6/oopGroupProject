@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { AuthContext } from '../context/AuthContext';
 import "./Sign_in.css"
 import "./Push_project.css"
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link} from 'react-router-dom';
 import { signUpUser } from '../services/service';
 import { generateRandomAvatarData } from "@fractalsoftware/random-avatar-generator";
 
@@ -65,6 +65,7 @@ const Sign_up = () => {
                     <p className="validation">{validation}</p>
 
                     <div className="submit">
+                        <Link  to="/"><Button className="button">Back</Button></Link>
                         <Button className="button" variant="success" onClick={() => 
                                     handleSignUp(inputLogin, inputEmail, inputPassword, validation, auth, history,
                                                 setInputLogin, setInputEmail, setInputPassword, setValidation)}>Sign Up</Button>
