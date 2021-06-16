@@ -1,8 +1,11 @@
 .main{
     width: 100%;
+    min-height: 890px;
+    height: 890px;
 }
 .main-content{
     width: 1200px;
+    height: 100%;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -15,11 +18,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    height: 80%;
 }
 .main-content-right{
     width: 1000px;
     background-color: #282c34;
     padding: 20px;
+    height: 100%;
 }
 
 .profile-img{
