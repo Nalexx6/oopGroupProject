@@ -12,20 +12,12 @@ const logoutHandle = (history, auth) => {
     history.push("/")
 }
 
-const UpdateUserImage = (user, setAvatar, history) => {
-    user.image = generateRandomAvatarData(16, );
+const UpdateUserImage = async (user, setAvatar) => {
+    user.image = generateRandomAvatarData(16);
     setAvatar(getAvatarFromData(user.image, "circle"));
-    updateUserImg(user);
+    console.log(user);
+    await updateUserImg(user);
 
-    history.push({
-        pathname : "/feed",
-        state : history.location.state
-    })
-
-    history.push({
-        pathname : "/profile",
-        state : history.location.state
-    })
 }
 
 const ViewProject = ({project, history}) => {
@@ -84,14 +76,13 @@ const Profile = () => {
             <div className="main-content">
                 <div className="main-content-left">
                     {loading ? <p></p> :
-
                         <div>
                             <img className="profile-img" src={`data:image/svg+xml;base64,${btoa(avatar)}`}/>
                             <p className="profile-text">{user.login}</p>
                             <p className="profile-text">Rating: {user.rating.toFixed(2)}</p>
                         </div>
                     }
-                    <div className="project-button" onClick={() => UpdateUserImage(user, setAvatar, history)}>
+                    <div className="project-button" onClick={() => UpdateUserImage(user, setAvatar)}>
                             <p className="add-project-text">Update Avatar</p>
                     </div>
 

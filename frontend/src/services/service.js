@@ -104,6 +104,7 @@ export async function signUpUser(user) {
 }
 
 export async function updateUserImg(user) {
+
     let response = await fetch('http://localhost:5000/api/users/' + user.id,{
         headers: { 'Content-Type': 'application/json' },
         method: 'PATCH',

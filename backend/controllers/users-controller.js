@@ -139,7 +139,7 @@ const login = async (req, res, next) => {
 
 const updateUserImage = async (req, res, next) => {
     const id = req.params.uid;
-    const { img } = req.body;
+    const { image } = req.body;
     let user
     try{
         user = await User.findById(id);
