@@ -9,13 +9,13 @@ import {AuthContext} from "../context/AuthContext";
 import {fetchProject, fetchReview, fetchUserById, addReview, editReview, editProject} from "../services/service";
 
 const voteUpReview = async (review, history) => {
-    let newReview = {
+    let body = {
         id: review.id,
         content:  review.content,
         mark : review.mark + 1
     }
 
-    await editReview(newReview)
+    await editReview(body)
     history.push({
         pathname : "/profile",
         state : history.location.state
@@ -29,13 +29,9 @@ const voteUpReview = async (review, history) => {
 }
 
 const voteDownReview = async (review, history) => {
-    let newReview = {
-        id: review.id,
-        content: review.content,
-        mark: review.mark - 1
-    }
+    review.mark--;
 
-    await editReview(newReview)
+    await editReview(review)
 
     history.push({
         pathname: "/profile",
@@ -48,11 +44,22 @@ const voteDownReview = async (review, history) => {
     })
 }
 
-const rankProject = async (project, rating) => {
+const rankProject = async (project, rating, history) => {
+    project.rating = rating;
 
+    await editProject(project);
 
+    history.push({
+        pathname: "/profile",
+        state: history.location.state
+    })
 
+    history.push({
+        pathname: "/project",
+        state: history.location.state
+    })
 }
+
 
 const handleSubmit = async (project, inputValue, setProject, setLoading, auth) => {
     let new_review = {
@@ -76,8 +83,7 @@ const handleSubmit = async (project, inputValue, setProject, setLoading, auth) =
     setLoading(false)
 }
 
-const LeftBarGeneration = ({review}) => {
-    let history = useHistory();
+const LeftBarGeneration = ({review, history}) => {
     return(
         <div className={"left-bar"}>
             <Button className={"button-up"} onClick={() => voteUpReview(review, history)}>^</Button>
@@ -92,7 +98,10 @@ const LeftBarGeneration = ({review}) => {
 const ProjectGeneration = ({project, setProject, setLoading}) => {
     const auth = useContext(AuthContext);
     const [inputValue, setInputValue] = useState("");
+    const [inputRank, setInputRank] = useState(5);
     console.log(project.review_data);
+
+    let history = useHistory();
 
     return(
         <div className={"right-bar"}>
@@ -104,14 +113,16 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
             <div className={"main-div-tools"}>
                 <p className={"review-text"} style={{marginBottom: "30px", width: "900px"}}>Author: {project.user.login}</p>
                 <div className={"rate-div"}>
-                    <select className={"rate-select"}>
+                    <select className={"rate-select"} value={inputRank}
+                            onChange={(event) => {setInputRank(event.target.value)}}>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
                             <option>5</option>
                     </select>
-                    <Button  className="review-rate-button" variant="success">Rate</Button>
+                    <Button  className="review-rate-button" variant="success"
+                             onClick={() => rankProject(project, inputRank, history)}>Rate</Button>
                 </div>
             </div>
             <div className={"input-comment-div"}>
@@ -123,7 +134,7 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
             {
                 project.review_data.map(review =>
                     <div className={"comment-div"} key={review.id}>
-                        <LeftBarGeneration review={review}/>
+                        <LeftBarGeneration review={review} history={history} />
                         <div className={"comment-text"}>{review.content}</div>
                     </div>)
             }

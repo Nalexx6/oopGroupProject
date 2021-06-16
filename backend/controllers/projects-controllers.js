@@ -116,7 +116,7 @@ const updateProject = async (req, res, next) => {
     project.title = title;
     project.code = code;
     project.tags = tags;
-    project.rating = rating;
+    project.rating = (project.rating + parseInt(rating)) / 2;
 
     try{
         await project.save();
