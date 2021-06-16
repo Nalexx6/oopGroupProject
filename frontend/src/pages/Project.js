@@ -6,7 +6,7 @@ import Header from "./Header";
 
 import { useHistory } from 'react-router-dom'
 import {AuthContext} from "../context/AuthContext";
-import {fetchProject, fetchReview, fetchUserById, addReview, editReview, editProject} from "../services/service";
+import {fetchProject, fetchReview, fetchUserById, addReview, editReview, editProjectMark} from "../services/service";
 
 const voteUpReview = async (review, history) => {
     let body = {
@@ -44,10 +44,10 @@ const voteDownReview = async (review, history) => {
     })
 }
 
-const rankProject = async (project, rating, history) => {
-    project.rating = rating;
+const rankProject = async (project, mark, history) => {
+    project.mark = mark;
 
-    await editProject(project);
+    await editProjectMark(project);
 
     history.push({
         pathname: "/profile",

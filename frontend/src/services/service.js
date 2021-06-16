@@ -55,6 +55,17 @@ export async function editProject(project) {
     return result.review;
 }
 
+export async function editProjectMark(project) {
+    let response = await fetch('http://localhost:5000/api/projects/mark/' + project.id , {
+        headers: { 'Content-Type': 'application/json' },
+        method : 'PATCH',
+        body: JSON.stringify(project)
+    })
+    let result = await response.json();
+    console.log(result)
+    return result.review;
+}
+
 export async function editReview(review){
     let response = await fetch('http://localhost:5000/api/reviews/' + review.id , {
         headers: { 'Content-Type': 'application/json' },
@@ -65,6 +76,7 @@ export async function editReview(review){
     console.log(result)
     return result.review;
 }
+
 
 
 
