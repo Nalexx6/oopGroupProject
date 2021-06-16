@@ -161,7 +161,7 @@ const updateUserImage = async (req, res, next) => {
     //     )
     //     return next(error);
     // }
-    user.imag = image;
+    user.image = image;
 
     try{
         await user.save();
