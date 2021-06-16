@@ -6,6 +6,11 @@ import {fetchProjectsForUser, fetchUserById} from "../services/service";
 import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext';
 
+const logoutHandle = (history, auth) => {
+    auth.logout();
+    history.push("/")
+}
+
 
 const ViewProject = ({project}) => {
     return(
@@ -29,6 +34,12 @@ const Profile = () => {
 
 
     useEffect (() => {
+        const checkForAuth = async () => {
+            if(auth.getUserId() == null){
+                history.push("/")
+            }
+        }
+
         const getUser = async () => {
             const _user = await fetchUserById(auth.getUserId())
             setUser(_user)
@@ -42,6 +53,7 @@ const Profile = () => {
             setLoading(false)
         }
 
+        checkForAuth()
         getUser()
         },
         [auth]
@@ -65,11 +77,10 @@ const Profile = () => {
                         <p className="add-project-text">Add project</p>
                     </button>
 
-                    <Link to="/" >
-                        <div className="project-button">
-                                <p className="add-project-text">Log out</p>
-                        </div>
-                    </Link>
+                    <div className="project-button" onClick={() => logoutHandle(history, auth)}>
+                            <p className="add-project-text">Log out</p>
+                    </div>
+
                 </div>
                 <div className="main-content-right">
                     <div className="projects-holder">
