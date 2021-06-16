@@ -27,9 +27,9 @@ const Profile = () => {
     const auth = useContext(AuthContext);
     const [projects, setProjects] = useState(null)
     const [loading, setLoading] = useState(true)
-
-    useEffect ( () => {
-        console.log("in profile", auth.userId)
+    let uid = auth.getUserId()
+    console.log("in profile", uid)
+    useEffect (() => {
         const getProjectsForUser = async () => {
             const _projects = await fetchProjectsForUser()
             setProjects(_projects)

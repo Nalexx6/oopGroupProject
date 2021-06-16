@@ -17,11 +17,11 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const { login, logout, userId } = useAuth();
+  const { login, logout, getUserId } = useAuth();
   return (
     <AuthContext.Provider
         value={{
-          userId: userId,
+          getUserId: getUserId,
           login: login,
           logout: logout
         }}
