@@ -8,11 +8,11 @@ import { useHistory } from 'react-router-dom'
 import {AuthContext} from "../context/AuthContext";
 import {fetchProject, fetchReview, fetchUserById, addReview} from "../services/service";
 
-// const woteUpProject = ({project}) => {
+// const voteUpProject = ({project}) => {
 //     project.rating++;
 // }
 //
-// const woteDownProject = ({project}) => {
+// const voteDownProject = ({project}) => {
 //     project.rating++;
 // }
 
