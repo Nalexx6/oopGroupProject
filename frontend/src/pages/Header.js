@@ -17,7 +17,7 @@ const Header = () => {
         const getUser = async () => {
             const _user = await fetchUserById(auth.getUserId())
 
-            setAvatar(getAvatarFromData(_user.image));
+            setAvatar(getAvatarFromData(_user.image, "circle"));
             setLoading(false)
         }
 

@@ -10,7 +10,7 @@ import {getAvatarFromData} from "@fractalsoftware/random-avatar-generator";
 
 const CardGeneration = (project) => {
     let history = useHistory();
-    let avatar = getAvatarFromData(project.user.image);
+    let avatar = getAvatarFromData(project.user.image, "circle");
     return(
 
         <div className={"main-div-card"}>
