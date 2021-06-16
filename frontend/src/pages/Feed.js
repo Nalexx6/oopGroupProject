@@ -26,7 +26,7 @@ const CardGeneration = ({project}) => {
                     {project.rating.toFixed(2)} ★ | Reviews Count: {project.reviews.length}</p>
             </div>
             <div className={"main-div-tools"}>
-                <div className={"card-description"}>{project.tags}</div>
+                <div className={"card-description"}>{project.description}</div>
             </div>
         </div>
 
