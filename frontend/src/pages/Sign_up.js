@@ -7,8 +7,8 @@ import { useHistory } from 'react-router-dom';
 import { signUpUser } from '../services/service';
 import { generateRandomAvatarData } from "@fractalsoftware/random-avatar-generator";
 
-const handleSignUp = async (inputLogin, inputEmail, inputPassword, auth, history,
-                            setInputLogin, setInputEmail, setInputPassword) => {
+const handleSignUp = async (inputLogin, inputEmail, inputPassword, validation, auth, history,
+                            setInputLogin, setInputEmail, setInputPassword, setValidation) => {
     let user = {
         login: inputLogin,
         email: inputEmail,
@@ -27,6 +27,7 @@ const handleSignUp = async (inputLogin, inputEmail, inputPassword, auth, history
         setInputLogin("");
         setInputEmail("");
         setInputPassword("");
+        setValidation("There is user with same login")
     }
 }
 
@@ -35,6 +36,7 @@ const Sign_up = () => {
     const [inputLogin, setInputLogin] = useState("");
     const [inputEmail, setInputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
+    const [validation, setValidation] = useState("")
 
     const auth = useContext(AuthContext);
     let history = useHistory();
@@ -59,11 +61,13 @@ const Sign_up = () => {
                     </p>
                     <input className={"input-data"} value={inputPassword}
                             onChange={(event) => {setInputPassword(event.target.value)}} type="text" />
+                    
+                    <p className="validation">{validation}</p>
 
                     <div className="submit">
                         <Button className="button" variant="success" onClick={() => 
-                                    handleSignUp(inputLogin, inputEmail, inputPassword, auth, history,
-                                                setInputLogin, setInputEmail, setInputPassword)}>Sign Up</Button>
+                                    handleSignUp(inputLogin, inputEmail, inputPassword, validation, auth, history,
+                                                setInputLogin, setInputEmail, setInputPassword, setValidation)}>Sign Up</Button>
                     </div>
                 </div>
             </div>
