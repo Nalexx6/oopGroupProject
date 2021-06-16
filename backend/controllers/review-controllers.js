@@ -57,11 +57,11 @@ const getReviewsByProjectId = async (req, res, next) => {
 }
 
 const createReview = async (req, res, next) => {
-    const { content, mark, project, creator } = req.body;
+    const { content, project, creator } = req.body;
     console.log("creator", req.body)
     const createdReview = new Review({
         content,
-        mark,
+        mark : 0,
         project,
         creator
     })

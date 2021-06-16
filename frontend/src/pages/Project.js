@@ -6,20 +6,57 @@ import Header from "./Header";
 
 import { useHistory } from 'react-router-dom'
 import {AuthContext} from "../context/AuthContext";
-import {fetchProject, fetchReview, fetchUserById, addReview} from "../services/service";
+import {fetchProject, fetchReview, fetchUserById, addReview, editReview, editProject} from "../services/service";
 
-// const voteUpProject = ({project}) => {
-//     project.rating++;
-// }
-//
-// const voteDownProject = ({project}) => {
-//     project.rating++;
-// }
+const voteUpReview = async (review, history) => {
+    let newReview = {
+        id: review.id,
+        content:  review.content,
+        mark : review.mark + 1
+    }
+
+    await editReview(newReview)
+    history.push({
+        pathname : "/profile",
+        state : history.location.state
+    })
+
+    history.push({
+        pathname : "/project",
+        state : history.location.state
+    })
+
+}
+
+const voteDownReview = async (review, history) => {
+    let newReview = {
+        id: review.id,
+        content: review.content,
+        mark: review.mark - 1
+    }
+
+    await editReview(newReview)
+
+    history.push({
+        pathname: "/profile",
+        state: history.location.state
+    })
+
+    history.push({
+        pathname: "/project",
+        state: history.location.state
+    })
+}
+
+const rankProject = async (project, rating) => {
+
+
+
+}
 
 const handleSubmit = async (project, inputValue, setProject, setLoading, auth) => {
     let new_review = {
         content: inputValue,
-        mark: 1,
         project: project.id,
         creator: auth.getUserId(),
     }
@@ -39,12 +76,13 @@ const handleSubmit = async (project, inputValue, setProject, setLoading, auth) =
     setLoading(false)
 }
 
-const LeftBarGeneration = ({review, setReview}) => {
+const LeftBarGeneration = ({review}) => {
+    let history = useHistory();
     return(
         <div className={"left-bar"}>
-            <Button className={"button-up"}>^</Button>
+            <Button className={"button-up"} onClick={() => voteUpReview(review, history)}>^</Button>
             <p className={"mark-text"}>{review.mark}</p>
-            <Button className={"button-down"}>v</Button>
+            <Button className={"button-down"} onClick={() => voteDownReview(review, history)}>v</Button>
             <p className={"mark-text"}>{review.user.login}</p>
         </div>
     )
