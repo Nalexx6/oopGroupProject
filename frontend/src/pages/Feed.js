@@ -2,23 +2,28 @@ import React, {useContext, useEffect, useState} from 'react';
 import "./Feed.css"
 import "./Header.css"
 import Header from "./Header";
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {AuthContext} from "../context/AuthContext";
 import {fetchAllProjects, fetchUserById} from "../services/service";
 
 
 const CardGeneration = ({project}) => {
+    let history = useHistory();
+
     return(
 
         <div className={"main-div-card"}>
             <div className={"main-div-tools"}>
                 <div className={"card-profile-img"}/>
-                <Link to="/project">
-                    <div className={"main-div-tools"} style={{margin: "0"}}>
+                    <div className={"main-div-tools"} style={{margin: "0"}}
+                         onClick={() => history.push({
+                             pathname : "/project",
+                             state : project.id
+                         })}>
                         <p className={"main-div-minor-text"} style={{textAlign: "left"}}>{project.user.login} | {project.title}</p>
                     </div>
-                </Link>
-                <p className={"main-div-minor-text"} style={{pointerEvents: "none"}}>{project.rating} ★ | Reviews Count: {project.reviews.length}</p>
+                <p className={"main-div-minor-text"} style={{pointerEvents: "none"}}>
+                    {project.rating} ★ | Reviews Count: {project.reviews.length}</p>
             </div>
             <div className={"main-div-tools"}>
                 <div className={"card-description"}>{project.tags}</div>

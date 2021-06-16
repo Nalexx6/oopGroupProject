@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import "./Project.css"
 import "./Header.css"
 import Button from 'react-bootstrap/Button';
 import Header from "./Header";
 
+import { useHistory } from 'react-router-dom'
+import {AuthContext} from "../context/AuthContext";
 import {fetchProject, fetchReview, fetchUserById, addReview} from "../services/service";
 
 // const woteUpProject = ({project}) => {
@@ -14,17 +16,17 @@ import {fetchProject, fetchReview, fetchUserById, addReview} from "../services/s
 //     project.rating++;
 // }
 
-const handleSubmit = async (project, inputValue, setProject, setLoading) => {
+const handleSubmit = async (project, inputValue, setProject, setLoading, auth) => {
     let new_review = {
         content: inputValue,
         mark: 1,
         project: project.id,
-        creator: "60c8dcd8dbae632d8d3e11fb",
+        creator: auth.getUserId(),
     }
 
     setLoading(true)
     await addReview(new_review);
-    const _project = await fetchProject("60c7a52035e6652af83b85df");
+    const _project = await fetchProject(project.id);
 
     _project.user = await fetchUserById(project.creator);
     _project.review_data = [_project.reviews.length]
@@ -50,7 +52,9 @@ const LeftBarGeneration = ({review, setReview}) => {
 }
 
 const ProjectGeneration = ({project, setProject, setLoading}) => {
+    const auth = useContext(AuthContext);
     const [inputValue, setInputValue] = useState("");
+    console.log(project.review_data);
 
     return(
         <div className={"right-bar"}>
@@ -73,8 +77,10 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
                 </div>
             </div>
             <div className={"input-comment-div"}>
-                 <textarea className={"input-comment"} value={inputValue} onChange={(event) => {setInputValue(event.target.value)}} type="text"/>
-                 <Button style={{textAlign: "center"}} className={"submit-button"}  variant="success" onClick={() => handleSubmit(project, inputValue, setProject, setLoading)} >Publish</Button>
+                 <textarea className={"input-comment"} value={inputValue}
+                         onChange={(event) => {setInputValue(event.target.value)}} type="text"/>
+                 <Button style={{textAlign: "center"}} className={"submit-button"}  variant="success"
+                         onClick={() => handleSubmit(project, inputValue, setProject, setLoading, auth)} >Publish</Button>
             </div>
             {
                 project.review_data.map(review =>
@@ -88,23 +94,27 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
 }
 
 const Project = () => {
+
     const [project, setProject] = useState(null)
     const [loading, setLoading] = useState(true)
+
+    let history = useHistory();
         useEffect ( () => {
         const getProjectForUser = async () => {
-            const _project = await fetchProject("60c7a52035e6652af83b85df")
+            const _project = await fetchProject(history.location.state)
             _project.user = await fetchUserById(_project.creator);
-            _project.review_data = [_project.reviews.length]
+            _project.review_data = [];
             for(let i = 0,j = _project.reviews.length-1;i < _project.reviews.length; i++, j--) {
-                _project.review_data[j] = await fetchReview(_project.reviews[i]);
-                _project.review_data[j].user = await fetchUserById(_project.review_data[j].creator);
+                let review = await fetchReview(_project.reviews[i]);
+                review.user = await fetchUserById(review.creator);
+                _project.review_data.push(review);
             }
             setProject(_project)
             setLoading(false)
         }
         getProjectForUser()
         },
-        []
+        [history]
     )
     return (
     <div>

@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { AuthContext } from '../context/AuthContext';
 import "./Sign_in.css"
 import "./Push_project.css"
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { signUpUser } from '../services/service';
 
 const handleSignUp = async (inputLogin, inputEmail, inputPassword, auth, history,
