@@ -47,6 +47,19 @@
     text-align: center;
     line-height: 100px;
 }
+.project-button:hover{
+    box-shadow:
+    1px 1px #53ea93,
+    2px 2px #53ea93,
+    3px 3px #53ea93,
+    4px 4px #53ea93,
+    5px 5px #53ea93,
+    6px 6px #53ea93,
+    7px 7px #53ea93;
+    -webkit-transform: translateX(-7px);
+    transform: translateX(-7px);
+    transition: all 500ms ease;
+}
 .add-project-text{
     font-weight: bold;
     font-size: 30px;
@@ -78,4 +91,17 @@
     font-size: 30px;
     margin: 25px;
     font-weight: bold;
+}
+.project:hover{
+    box-shadow:
+    1px 1px #53ea93,
+    2px 2px #53ea93,
+    3px 3px #53ea93,
+    4px 4px #53ea93,
+    5px 5px #53ea93,
+    6px 6px #53ea93,
+    7px 7px #53ea93;
+    -webkit-transform: translateX(-7px);
+    transform: translateX(-7px);
+    transition: all 500ms ease;
 }

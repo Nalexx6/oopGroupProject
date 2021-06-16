@@ -67,13 +67,13 @@ const Profile = () => {
                 <div className="main-content-left">
                     <div className="profile-img">
                     </div>
-                    {loading ? <p>dd</p> :
+                    {loading ? <p></p> :
                         <div>
                             <p className="profile-text">{user.login}</p>
                             <p className="profile-text">Rating: {user.rating}</p>
                         </div>
                     }
-                    <button className="add-project-button" onClick={() => history.push("/push_project")}>
+                    <button className="project-button" onClick={() => history.push("/push_project")}>
                         <p className="add-project-text">Add project</p>
                     </button>
 
