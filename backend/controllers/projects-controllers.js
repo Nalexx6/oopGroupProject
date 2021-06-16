@@ -12,13 +12,13 @@ const getProjectById = async (req, res, next) => {
         project = await Project.findById(id);
     } catch(err){
         const error = new HttpError(
-            'Something went wrong, could not find a place.', 
+            'Something went wrong, could not find a project.', 
             500
         );
         return next(error);
     }
     if(!project){
-        const error = new HttpError('Could not find place for the provided id.', 404);
+        const error = new HttpError('Could not find project for the provided id.', 404);
         return next(error);
     }
     res.json({ project: project.toObject({getters: true }) });
@@ -69,7 +69,7 @@ const createProject = async (req, res, next) => {
     try {
         user = await User.findById(creator);
     } catch(err){
-        const error = new HttpError('Creating place failed, please try again later', 500);
+        const error = new HttpError('Creating project failed, please try again later', 500);
         return next(error);
     }
     if(!user){
@@ -123,7 +123,7 @@ const updateProject = async (req, res, next) => {
         await project.save();
     } catch(err){
         const error = new HttpError(
-            'Something went wrong, could not update the place', 500
+            'Something went wrong, could not update the project', 500
         );
         return next(error);
     }
@@ -150,7 +150,7 @@ const addMark = async (req, res, next) => {
         await project.save();
     } catch(err){
         const error = new HttpError(
-            'Something went wrong, could not update the place', 500
+            'Something went wrong, could not update the project', 500
         );
         return next(error);
     }
@@ -183,7 +183,7 @@ const addMark = async (req, res, next) => {
         await creator.save();
     } catch(err){
         const error = new HttpError(
-            'Something went wrong, could not update the place', 500
+            'Something went wrong, could not update the project', 500
         );
         return next(error);
     }
@@ -198,14 +198,14 @@ const deleteProject = async (req, res, next) => {
       project = await Project.findById(id);
     } catch (err) {
       const error = new HttpError(
-        'Something went wrong, could not delete place.',
+        'Something went wrong, could not delete project.',
         500
       );
       return next(error);
     }
   
     if (!project) {
-      const error = new HttpError('Could not find place for this id.', 404);
+      const error = new HttpError('Could not find project for this id.', 404);
       return next(error);
     }
 
@@ -228,7 +228,7 @@ const deleteProject = async (req, res, next) => {
       await sess.commitTransaction();
     } catch (err) {
       const error = new HttpError(
-        'Something went wrong, could not delete place.',
+        'Something went wrong, could not delete project.',
         500
       );
     return next(error);
