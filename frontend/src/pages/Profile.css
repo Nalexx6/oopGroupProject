@@ -48,13 +48,13 @@
 }
 .project-button:hover{
     box-shadow:
-    1px 1px #53ea93,
-    2px 2px #53ea93,
-    3px 3px #53ea93,
-    4px 4px #53ea93,
-    5px 5px #53ea93,
-    6px 6px #53ea93,
-    7px 7px #53ea93;
+    1px 1px wheat,
+    2px 2px wheat,
+    3px 3px wheat,
+    4px 4px wheat,
+    5px 5px wheat,
+    6px 6px wheat,
+    7px 7px wheat;
     -webkit-transform: translateX(-7px);
     transform: translateX(-7px);
     transition: all 500ms ease;
@@ -91,13 +91,13 @@
 }
 .project:hover{
     box-shadow:
-    1px 1px #53ea93,
-    2px 2px #53ea93,
-    3px 3px #53ea93,
-    4px 4px #53ea93,
-    5px 5px #53ea93,
-    6px 6px #53ea93,
-    7px 7px #53ea93;
+    1px 1px wheat,
+    2px 2px wheat,
+    3px 3px wheat,
+    4px 4px wheat,
+    5px 5px wheat,
+    6px 6px wheat,
+    7px 7px wheat;
     -webkit-transform: translateX(-7px);
     transform: translateX(-7px);
     transition: all 500ms ease;
