@@ -7,7 +7,6 @@ import {getAvatarFromData} from "@fractalsoftware/random-avatar-generator";
 
 const Header = () => {
     const [avatar, setAvatar] = useState(null)
-    const [loading, setLoading] = useState(true)
 
 
     let history = useHistory();
@@ -18,7 +17,6 @@ const Header = () => {
             const _user = await fetchUserById(auth.getUserId())
 
             setAvatar(getAvatarFromData(_user.image, "circle"));
-            setLoading(false)
         }
 
         getUser()
