@@ -109,7 +109,9 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
                 <p className={"review-text"}>{project.title} </p>
                 <p className={"review-rating"} >Rating: {project.rating.toFixed(2)} ★</p>
             </div>
-            <div className={"review-text-div"}><div className={"code-area"}/> {project.code} </div>
+            <plaintext className={"review-text-div"}> 
+                {project.code} 
+            </plaintext>
             <div className={"main-div-tools"}>
                 <p className={"review-text"} style={{marginBottom: "30px", width: "900px"}}>Author: {project.user.login}</p>
                 <div className={"rate-div"}>
