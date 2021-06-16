@@ -54,10 +54,10 @@ const Push_project = () => {
                                    onChange={(event) => {setInputDescription(event.target.value)}} type="text" />
                         </div>
 
-                            <button className={"project-button"}
-                                onClick={() => handleSubmit(inputTitle, inputDescription, inputCode, history, auth)}>
-                                <p className={"add-project-text"}>Push project</p>
-                            </button>
+                        <div className={"project-button"}
+                            onClick={() => handleSubmit(inputTitle, inputDescription, inputCode, history, auth)}>
+                            <p className={"add-project-text"}>Push project</p>
+                        </div>
                     </div>
                     <div className={"main-content-right-column"}>
                         <textarea className={"text-area"} value={inputCode} placeholder="Add your code here"

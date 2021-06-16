@@ -84,9 +84,9 @@ const Profile = () => {
                             <p className="add-project-text">Update Avatar</p>
                     </div>
 
-                    <button className="project-button" onClick={() => history.push("/push_project")}>
+                    <div className="project-button" onClick={() => history.push("/push_project")}>
                         <p className="add-project-text">Add project</p>
-                    </button>
+                    </div>
 
                     <div className="project-button" onClick={() => logoutHandle(history, auth)}>
                             <p className="add-project-text">Log out</p>
