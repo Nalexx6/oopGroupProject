@@ -10,6 +10,22 @@
     margin: auto;
 }
 
+.left-bar{
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+.submit-button{
+    background: #0a68ff;
+    width: 100px;
+    height: 20px;
+    border: none;
+}
+
 .main-div-tools{
     display: flex;
     margin: auto;
@@ -85,18 +101,61 @@ body {
 
 .comment-div{
     background: white;
-    min-height: 100px;
-    line-height: 100px;
+    display: flex;
+    flex-direction: row;
+    line-height: 30px;
+    font-size: 15px;
     border-radius: 15px;
     margin-bottom: 50px;
-    width: 900px;
+    max-width: 900px;
+    margin-left: 50px;
+}
+
+.button-up{
+
+    width: 25px;
+    height: 25px;
+    background: green;
+    border: none;
+}
+
+.button-down{
+
+    width: 25px;
+    height: 25px;
+    background: red;
+    border: none;
+}
+
+.mark-text{
+
+    color: #282c34;
+    font-size: 15px;
+    margin: 0;
+}
+
+.comment-text{
+    width: 750px;
+    height: 80px;
+    background: wheat;
+    font-size: 20px;
+    color: #282c34;
+    padding: 10px 25px 10px 25px;
+    border-radius: 0 10px 10px 0;
+}
+
+.input-comment-div{
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    max-width: 900px;
     margin-left: 50px;
 }
 
 .input-comment{
     resize: none;
-    width: 850px;
-    height: 100px;
-    padding: 0;
-    margin: 0;
+    width: 870px;
+    min-height: 100px;
+    border-radius: 10px 10px 0 0;
+    padding: 14px;
 }

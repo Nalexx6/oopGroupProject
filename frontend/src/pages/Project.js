@@ -31,11 +31,23 @@ const handleSubmit = async (project, inputValue, setProject, setLoading) => {
 
     for(let i = 0,j = _project.reviews.length-1;i < _project.reviews.length; i++, j--) {
         _project.review_data[j] = await fetchReview(_project.reviews[i]);
+        _project.review_data[j].user = await fetchUserById(_project.review_data[j].creator);
     }
     setProject(_project);
     setLoading(false)
 }
 
+const LeftBarGeneration = ({review, setReview}) => {
+    return(
+        <div className={"left-bar"}>
+            <Button className={"button-up"}>^</Button>
+            <p className={"mark-text"}>{review.mark}</p>
+            <Button className={"button-down"}>v</Button>
+            <p className={"mark-text"}>{review.user.login}</p>
+        </div>
+    )
+
+}
 
 const ProjectGeneration = ({project, setProject, setLoading}) => {
     const [inputValue, setInputValue] = useState("");
@@ -60,14 +72,15 @@ const ProjectGeneration = ({project, setProject, setLoading}) => {
                     <Button  className="review-rate-button" variant="success">Rate</Button>
                 </div>
             </div>
-            <div className={"comment-div"}>
-                 <textarea className={"input-comment"} value={inputValue} onChange={(event) => {setInputValue(event.target.value)}} type="text" />
-                 {/*<Button style={{textAlign: "left"}}  variant="info" onClick={() => handleSubmit(project, inputValue, setProject, setLoading)} >Publish</Button>*/}
+            <div className={"input-comment-div"}>
+                 <textarea className={"input-comment"} value={inputValue} onChange={(event) => {setInputValue(event.target.value)}} type="text"/>
+                 <Button style={{textAlign: "center"}} className={"submit-button"}  variant="success" onClick={() => handleSubmit(project, inputValue, setProject, setLoading)} >Publish</Button>
             </div>
             {
                 project.review_data.map(review =>
-                    <div className={"comment-div"}>
-                        {review.content}
+                    <div className={"comment-div"} key={review.id}>
+                        <LeftBarGeneration review={review}/>
+                        <div className={"comment-text"}>{review.content}</div>
                     </div>)
             }
         </div>
@@ -84,6 +97,7 @@ const Project = () => {
             _project.review_data = [_project.reviews.length]
             for(let i = 0,j = _project.reviews.length-1;i < _project.reviews.length; i++, j--) {
                 _project.review_data[j] = await fetchReview(_project.reviews[i]);
+                _project.review_data[j].user = await fetchUserById(_project.review_data[j].creator);
             }
             setProject(_project)
             setLoading(false)
