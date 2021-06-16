@@ -23,7 +23,7 @@ const CardGeneration = ({project}) => {
                         <p className={"main-div-minor-text"} style={{textAlign: "left"}}>{project.user.login} | {project.title}</p>
                     </div>
                 <p className={"main-div-minor-text"} style={{pointerEvents: "none"}}>
-                    {project.rating} ★ | Reviews Count: {project.reviews.length}</p>
+                    {project.rating.toFixed(2)} ★ | Reviews Count: {project.reviews.length}</p>
             </div>
             <div className={"main-div-tools"}>
                 <div className={"card-description"}>{project.tags}</div>

@@ -19,7 +19,7 @@ const ViewProject = ({project, history}) => {
                     state : project.id
                 })}>
                 <p className="project-text">{ project.title }</p>
-                <p className="project-text">Rating: { project.rating }</p>
+                <p className="project-text">Rating: { project.rating.toFixed(2) }</p>
                 <p className="project-text">Reviews: { project.reviews.length }</p>
             </div>
     )
@@ -71,7 +71,7 @@ const Profile = () => {
                     {loading ? <p></p> :
                         <div>
                             <p className="profile-text">{user.login}</p>
-                            <p className="profile-text">Rating: {user.rating}</p>
+                            <p className="profile-text">Rating: {user.rating.toFixed(2)}</p>
                         </div>
                     }
                     <button className="project-button" onClick={() => history.push("/push_project")}>
