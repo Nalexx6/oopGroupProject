@@ -83,6 +83,7 @@
 
 .code-area{
     width: 900px;
+    white-space: pre-line;
 }
 
 body {
@@ -97,6 +98,8 @@ body {
     min-height: 300px;
     font-size: 30px;
     color: #282c34;
+
+    white-space: pre-line;
 }
 
 .comment-div{
