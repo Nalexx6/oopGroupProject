@@ -19,8 +19,7 @@
 .company-name{
     color: chocolate;
     margin: 10px;
-    font-size: 60px;
-    font-weight: bold;
+    font-size: 50px;
     text-decoration: none;
 }
 .company-name:focus, :hover, :visited, :link, :active {
