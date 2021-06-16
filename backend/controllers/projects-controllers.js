@@ -171,8 +171,14 @@ const addMark = async (req, res, next) => {
     }
 
     let newUserRating = 0;
-    projects.forEach(p => newUserRating += p.rating);
-    newUserRating /= projects.length;
+    let actualProjectsSize = 0
+    projects.forEach(p => {
+        newUserRating += p.rating;
+        if(p.rating > 0){
+            actualProjectsSize++;
+        }
+    });
+    newUserRating /= actualProjectsSize;
     console.log("rating: ", newUserRating);
     creator.rating = newUserRating;
 
