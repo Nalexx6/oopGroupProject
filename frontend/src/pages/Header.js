@@ -1,8 +1,12 @@
 import React from "react";
 import "./Header.css"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Header = () => {
+
+    let history = useHistory();
+
+
     return(
         <div className="future-header">
             <div className="header-content">
@@ -10,9 +14,9 @@ const Header = () => {
                     <p className="company-name" style={{pointerEvents: "none"}}>CoReTool</p>
                 </div>
                 <div className="header-right-block">
-                    <Link className="company-name" to="/feed"> Feed </Link>
+                    <div className="company-name" onClick={() => history.push("/feed")}> Feed </div>
                     <p className={"company-name"} style={{pointerEvents: "none"}}>|</p>
-                    <Link className="company-name" to="/profile"> Profile</Link>
+                    <div className="company-name" onClick={() => history.push("/profile")}> Profile</div>
                     
                     <div className="header-profile-img">
                     </div>

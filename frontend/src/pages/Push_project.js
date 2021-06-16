@@ -1,34 +1,25 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import "./Header.css"
 import "./Push_project.css"
 import Header from "./Header";
 import { useHistory } from 'react-router-dom';
 import {addProject} from "../services/service";
+import {AuthContext} from "../context/AuthContext";
 
-const handleSubmit = async (inputTitle, inputCode, history) => {
+const handleSubmit = async (inputTitle, inputCode, history, auth) => {
     let new_project = {
         title: inputTitle,
         code: inputCode,
         tags : [],
-        creator: "60c8dcd8dbae632d8d3e11fb",
+        creator: auth.getUserId(),
     }
 
     await addProject(new_project);
-
     history.push("/profile")
-    // const _project = await fetchProject("60c7a52035e6652af83b85df");
-
-    // _project.user = await fetchUser(project.creator);
-    // _project.review_data = [_project.reviews.length]
-    //
-    // for(let i = 0,j = _project.reviews.length-1;i < _project.reviews.length; i++, j--) {
-    //     _project.review_data[j] = await fetchReview(_project.reviews[i]);
-    // }
-    // setProject(_project);
-    // setLoading(false)
 }
 
 const Push_project = () => {
+    const auth = useContext(AuthContext);
     const [inputTitle, setInputTitle] = useState("");
     const [inputCode, setInputCode] = useState("");
 
@@ -46,9 +37,10 @@ const Push_project = () => {
                                    onChange={(event) => {setInputTitle(event.target.value)}} type="text" />
                         </div>
 
-                            <div className={"project-button"} onClick={handleSubmit(inputTitle, inputCode, history)}>
+                            <button className={"project-button"}
+                                onClick={() => handleSubmit(inputTitle, inputCode, history, auth)}>
                                 <p className={"add-project-text"}>Push project</p>
-                            </div>
+                            </button>
                     </div>
                     <div className={"main-content-right-column"}>
                         <textarea className={"text-area"} value={inputCode} placeholder="Add your code here"

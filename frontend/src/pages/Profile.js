@@ -32,6 +32,7 @@ const Profile = () => {
         const getUser = async () => {
             const _user = await fetchUserById(auth.getUserId())
             setUser(_user)
+            console.log(_user)
 
             const _projects = await fetchProjectsForUser(auth.getUserId())
             setProjects(_projects)
@@ -54,11 +55,15 @@ const Profile = () => {
                 <div className="main-content-left">
                     <div className="profile-img">
                     </div>
-                    <p className="profile-text">{ user.login }</p>
-                    <p className="profile-text">Rating: { user.rating }</p>
-                        <div className="add-project-button" onClick={() => history.push("/push_project")}>
-                            <p className="add-project-text">Add project</p>
+                    {loading ? <p>dd</p> :
+                        <div>
+                            <p className="profile-text">{user.login}</p>
+                            <p className="profile-text">Rating: {user.rating}</p>
                         </div>
+                    }
+                    <button className="add-project-button" onClick={() => history.push("/push_project")}>
+                        <p className="add-project-text">Add project</p>
+                    </button>
 
                     <Link to="/" >
                         <div className="project-button">

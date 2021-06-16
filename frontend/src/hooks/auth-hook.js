@@ -14,7 +14,7 @@ export const useAuth = () => {
 
   const logout = () => {
     localStorage.removeItem('userData');
-    userId = null;
+    setUserId(null)
   };
   return { login, logout, getUserId };
 };
