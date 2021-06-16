@@ -5,12 +5,18 @@ import Header from "./Header"
 import {fetchProjectsForUser, fetchUserById} from "../services/service";
 import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext';
+import {generateRandomAvatarData, getAvatarFromData} from "@fractalsoftware/random-avatar-generator";
 
 const logoutHandle = (history, auth) => {
     auth.logout();
     history.push("/")
 }
 
+const UpdateUserImage = (user, setAvatar) => {
+    user.image = generateRandomAvatarData(8);
+    setAvatar(getAvatarFromData(user.image));
+
+}
 
 const ViewProject = ({project, history}) => {
     return(
@@ -30,7 +36,7 @@ const Profile = () => {
     const [projects, setProjects] = useState(null)
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
-
+    const [avatar, setAvatar] = useState(null)
     let history = useHistory();
 
 
@@ -51,6 +57,7 @@ const Profile = () => {
             if(_projects == null){
                 setProjects([])
             }
+            setAvatar(getAvatarFromData(_user.image));
             setLoading(false)
         }
 
@@ -66,14 +73,18 @@ const Profile = () => {
         <div className="main">
             <div className="main-content">
                 <div className="main-content-left">
-                    <div className="profile-img">
-                    </div>
                     {loading ? <p></p> :
+
                         <div>
+                            <img className="profile-img" src={`data:image/svg+xml;base64,${btoa(avatar)}`}/>
                             <p className="profile-text">{user.login}</p>
                             <p className="profile-text">Rating: {user.rating.toFixed(2)}</p>
                         </div>
                     }
+                    <div className="project-button" onClick={() => UpdateUserImage(user, setAvatar)}>
+                            <p className="add-project-text">Update Avatar</p>
+                    </div>
+
                     <button className="project-button" onClick={() => history.push("/push_project")}>
                         <p className="add-project-text">Add project</p>
                     </button>

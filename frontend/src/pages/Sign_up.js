@@ -5,6 +5,7 @@ import "./Sign_in.css"
 import "./Push_project.css"
 import { useHistory } from 'react-router-dom';
 import { signUpUser } from '../services/service';
+import { generateRandomAvatarData } from "@fractalsoftware/random-avatar-generator";
 
 const handleSignUp = async (inputLogin, inputEmail, inputPassword, auth, history,
                             setInputLogin, setInputEmail, setInputPassword) => {
@@ -12,10 +13,11 @@ const handleSignUp = async (inputLogin, inputEmail, inputPassword, auth, history
         login: inputLogin,
         email: inputEmail,
         password: inputPassword,
-        image: "123"
+        image: generateRandomAvatarData(8)
     }
 
     let loggedUser = await signUpUser(user);
+
 
 
     if(loggedUser != null) {
