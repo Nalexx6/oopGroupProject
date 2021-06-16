@@ -35,9 +35,6 @@ const getReviewsByUserId = async (req, res, next) => {
         const error = new HttpError('Fetching reviews failed, please try again later', 500);
         return next(error);
     }
-    // if(reviews.length === 0){
-    //     return next(new HttpError('Could not find review for the provided user id.', 404));
-    // }
     res.json({reviews: reviews.map(review => review.toObject({ getters: true }))});
 }
 
@@ -50,9 +47,6 @@ const getReviewsByProjectId = async (req, res, next) => {
         const error = new HttpError('Fetching reviews failed, please try again later', 500);
         return next(error);
     }
-    // if(reviews.length === 0){
-    //     return next(new HttpError('Could not find review for the provided project id.', 404));
-    // }
     res.json({reviews: reviews.map(review => review.toObject({ getters: true }))});
 }
 
@@ -104,7 +98,7 @@ const createReview = async (req, res, next) => {
         await sess.commitTransaction();
     } catch (err){
         const error = new HttpError(
-            'Creating place failed, please try again',
+            'Creating review failed, please try again',
             500
         );
         return next(error);
@@ -127,7 +121,7 @@ const updateReview = async (req, res, next) => {
 
     // if(review.creator.toString() !== req.userData.userId){
     //     const error = new HttpError(
-    //         'You are not allowed to edit this place.',
+    //         'You are not allowed to edit this review.',
     //         401 
     //     )
     //     return next(error);
@@ -168,7 +162,7 @@ const deleteReview = async (req, res, next) => {
 
     // if(review.creator.id !== req.userData.userId){
     //     const error = new HttpError(
-    //         'You are not allowed to delete this place.',
+    //         'You are not allowed to delete this review.',
     //         401 
     //     )
     //     return next(error);

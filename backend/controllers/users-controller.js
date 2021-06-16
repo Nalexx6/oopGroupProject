@@ -41,7 +41,6 @@ const getUsers = async (req, res, next) => {
 const signup = async (req, res, next) => {
     const { login, email, password, image } = req.body;
 
-    // step1: check if user already exists
     let existingUser;
     try{
         existingUser = await User.findOne({email: email});
@@ -53,7 +52,7 @@ const signup = async (req, res, next) => {
         const error = new HttpError('User already exists, plase login instead.', 422)
         return next(error)
     }
-    // step2: hash password 
+ 
     let hashedPassword;
     try{
         hashedPassword = await bcrypt.hash(password, 12); // second parametr is number of salting rounds; 12 is good 
@@ -62,7 +61,6 @@ const signup = async (req, res, next) => {
         return next(error);
     }
 
-    //step3: create user
     const createdUser = new User({
         login,
         email,
@@ -72,14 +70,14 @@ const signup = async (req, res, next) => {
         projects: [], 
         reviews: []
     });
-    //step4: save user to db
+
     try {
         await createdUser.save();
     } catch (err) {
         const error = new HttpError('Signing up failed, please try again', 500);
         return next(error);
     }
-    //step5: create token
+
     let token;
     try{
         token = jwt.sign(
@@ -98,7 +96,6 @@ const signup = async (req, res, next) => {
 
 const login = async (req, res, next) => {
     const {login, password} = req.body;
-    //step1: check if user exists
     let existingUser;
     try{
         existingUser = await User.findOne({login: login});
@@ -111,7 +108,6 @@ const login = async (req, res, next) => {
         return next(error)
     }
 
-    //step2: create token
     let token;
     try{
         token = jwt.sign(
@@ -123,7 +119,7 @@ const login = async (req, res, next) => {
         const error = new HttpError('Logging in failed, please try again', 500);
         return next(error); 
     }
-    //step3: check credentials
+    
     let isValidPassword = false;
     try{
         isValidPassword = await bcrypt.compare(password, existingUser.password);
@@ -156,7 +152,7 @@ const updateUserImage = async (req, res, next) => {
 
     // if(project.creator.toString() !== req.userData.userId){
     //     const error = new HttpError(
-    //         'You are not allowed to edit this place.',
+    //         'You are not allowed to edit this project.',
     //         401
     //     )
     //     return next(error);

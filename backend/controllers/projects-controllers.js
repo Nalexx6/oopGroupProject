@@ -47,9 +47,6 @@ const getProjectsByUserId = async (req, res, next) => {
         const error = new HttpError('Fetching projects failed, please try again later', 500);
         return next(error);
     }
-    // if(projects.length === 0){
-    //     return next(new HttpError('Could not find place for the provided user id.', 404));
-    // }
     res.json({projects: projects.map(project => project.toObject({ getters: true }))});
 }
 
@@ -86,7 +83,7 @@ const createProject = async (req, res, next) => {
         await sess.commitTransaction();
     } catch (err){
         const error = new HttpError(
-            'Creating place failed, please try again',
+            'Creating project failed, please try again',
             500
         );
         return next(error);
@@ -109,7 +106,7 @@ const updateProject = async (req, res, next) => {
 
     // if(project.creator.toString() !== req.userData.userId){
     //     const error = new HttpError(
-    //         'You are not allowed to edit this place.',
+    //         'You are not allowed to edit this project.',
     //         401 
     //     )
     //     return next(error);
@@ -211,7 +208,7 @@ const deleteProject = async (req, res, next) => {
 
     // if(project.creator.id !== req.userData.userId){
     //     const error = new HttpError(
-    //         'You are not allowed to delete this place.',
+    //         'You are not allowed to delete this project.',
     //         401 
     //     )
     //     return next(error);
