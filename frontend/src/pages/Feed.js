@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import "./Feed.css"
 import "./Header.css"
 import Header from "./Header";
+import Loading from "./Loading";
 import { useHistory } from 'react-router-dom';
 import {AuthContext} from "../context/AuthContext";
 import {fetchAllProjects, fetchUserById} from "../services/service";
@@ -72,7 +73,7 @@ const Feed = () => {
                 <p className={"main-div-major-text"}>New and Popular Code:</p>
             </div>
             <div className={"card-holder"}>
-                {  loading ? <div className="company-name"> </div> :
+                {  loading ? <div className="company-name"><Loading/></div> :
                     projects.map(
                         (p) => {
                             return <CardGeneration project={p}/>

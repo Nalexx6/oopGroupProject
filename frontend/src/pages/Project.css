@@ -75,10 +75,8 @@
 .main-div{
     margin: auto;
     width: 1200px;
-    height: 100%;
     background: #282c34;
-    min-height: 800px;
-
+    min-height: 890px;
 }
 
 .code-area{

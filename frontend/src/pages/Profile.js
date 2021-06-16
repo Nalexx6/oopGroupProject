@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import "./Header.css"
 import "./Profile.css"
 import Header from "./Header"
+import Loading from "./Loading";
 import {fetchProjectsForUser, fetchUserById, updateUserImg} from "../services/service";
 import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext';
@@ -75,7 +76,7 @@ const Profile = () => {
         <div className="main">
             <div className="main-content">
                 <div className="main-content-left">
-                    {loading ? <p></p> :
+                    {loading ? <Loading/> :
                         <div>
                             <img className="profile-img" src={`data:image/svg+xml;base64,${btoa(avatar)}`}/>
                             <p className="profile-text">{user.login}</p>
@@ -97,7 +98,7 @@ const Profile = () => {
                 </div>
                 <div className="main-content-right">
                     <div className="projects-holder">
-                        { loading ? <div className="company-name"> </div> :
+                        { loading ? <div className="company-name"><Loading/></div> :
                             projects.map(
                                 (project) => {
                                     return <ViewProject project={project} history={history}/>

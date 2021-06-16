@@ -3,7 +3,7 @@ import "./Project.css"
 import "./Header.css"
 import Button from 'react-bootstrap/Button';
 import Header from "./Header";
-
+import Loading from "./Loading";
 import { useHistory } from 'react-router-dom'
 import {AuthContext} from "../context/AuthContext";
 import {fetchProject, fetchReview, fetchUserById, addReview, editReview, editProjectMark} from "../services/service";
@@ -182,7 +182,7 @@ const Project = () => {
         <div className={"main-div"}>
             { loading ?
                 <div className={"main-div-wrapper"}>
-                    <div className={"right-bar"}/>
+                    <Loading/>
                 </div>
                 :
                 <div className={"main-div-wrapper"}>
