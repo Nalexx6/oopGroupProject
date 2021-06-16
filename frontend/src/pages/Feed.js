@@ -20,7 +20,7 @@ const CardGeneration = ({project}) => {
                              pathname : "/project",
                              state : project.id
                          })}>
-                        <p className={"main-div-minor-text"} style={{textAlign: "left"}}>{project.user.login} | {project.title}</p>
+                        <p className={"main-div-minor-text"} style={{textAlign: "left"}}>{project.user.login} | {project.user.rating.toFixed(2)} | {project.title}</p>
                     </div>
                 <p className={"main-div-minor-text"} style={{pointerEvents: "none"}}>
                     {project.rating.toFixed(2)} ★ | Reviews Count: {project.reviews.length}</p>

@@ -48,8 +48,8 @@ const Sign_in = () => {
                         <p className="text">
                             Password
                         </p>
-                        <input className={"input-data"} value={inputPassword}
-                                onChange={(event) => {setInputPassword(event.target.value)}} type="text" />
+                        <input className={"input-data"} value={inputPassword} 
+                                onChange={(event) => {setInputPassword(event.target.value)}} type="password" />
                         <div className="submit">
                             <Button className="button" variant="success"
                                 onClick={() => handleLogin(inputLogin, inputPassword,
