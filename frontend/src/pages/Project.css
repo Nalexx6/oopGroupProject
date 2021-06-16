@@ -94,6 +94,7 @@ body {
 .review-text-div{
     background: wheat;
     text-align: left;
+    width: 89%;
     padding: 10px 50px;
     height: 500px;
     font-size: 20px;
