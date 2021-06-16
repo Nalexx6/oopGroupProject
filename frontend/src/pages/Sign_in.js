@@ -7,7 +7,7 @@ import { Link, useHistory } from 'react-router-dom';
 import {AuthContext} from "../context/AuthContext";
 import {loginUser} from "../services/service";
 
-const handleLogin = async (inputLogin, inputPassword, setInputLogin, setInputPassword, history, auth) => {
+const handleLogin = async (inputLogin, inputPassword, validation, setInputLogin, setInputPassword, setValidation, history, auth) => {
     let user =  {
         login : inputLogin,
         password : inputPassword
@@ -22,6 +22,7 @@ const handleLogin = async (inputLogin, inputPassword, setInputLogin, setInputPas
     } else {
         setInputLogin("");
         setInputPassword("");
+        setValidation("Incorrect login or password")
     }
 
 }
@@ -29,6 +30,7 @@ const handleLogin = async (inputLogin, inputPassword, setInputLogin, setInputPas
 const Sign_in = () => {
     const [inputLogin, setInputLogin] = useState("");
     const [inputPassword, setInputPassword] = useState("");
+    const [validation, setValidation] = useState("")
     const [loading, setLoading] = useState(true)
 
     const auth = useContext(AuthContext);
@@ -50,10 +52,11 @@ const Sign_in = () => {
                         </p>
                         <input className={"input-data"} value={inputPassword} 
                                 onChange={(event) => {setInputPassword(event.target.value)}} type="password" />
+                        <p className="validation">{validation}</p>
                         <div className="submit">
                             <Button className="button" variant="success"
-                                onClick={() => handleLogin(inputLogin, inputPassword,
-                                    setInputLogin, setInputPassword, history, auth)} >Sign In</Button>
+                                onClick={() => handleLogin(inputLogin, inputPassword, validation,
+                                    setInputLogin, setInputPassword, setValidation, history, auth)} >Sign In</Button>
                             <Link to="/sign_up"><Button className="button" variant="success" >Sign Up</Button></Link>
                         </div>
                     </div>
