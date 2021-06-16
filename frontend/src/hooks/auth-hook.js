@@ -13,7 +13,7 @@ export const useAuth = () => {
   };
 
   const logout = () => {
-    localStorage.removeItem('userData');
+    localStorage.removeItem('userId');
     setUserId(null)
   };
   return { login, logout, getUserId };
