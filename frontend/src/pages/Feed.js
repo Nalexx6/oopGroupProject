@@ -11,7 +11,7 @@ import {getAvatarFromData} from "@fractalsoftware/random-avatar-generator";
 
 const CardGeneration = (project) => {
     let history = useHistory();
-
+    console.log( "HUETA ", project)
     let avatar = getAvatarFromData(project.project.user.image, "circle");
     return(
 
@@ -37,11 +37,50 @@ const CardGeneration = (project) => {
     )
 }
 
+const ProjectsPageGeneration = ({projects, page}) =>{
+    let _projects = []
+
+    for(let i = 5*(page - 1); i < 5*page && i < projects.length; i++)
+        _projects[i] = projects[i];
+
+    return  (_projects.map((p) => {
+            return <CardGeneration project={p}/>
+        }
+    ))
+}
+
+const PagesBarGeneration = ({projects, setPage, history}) => {
+    let j = 0;
+    let i = projects.length/5;
+    let result = [];
+
+    for(; i > 0; i--, j++){
+        result[j] = j+1;
+    }
+
+    return(
+
+        <div className={"main-div-page"} >
+            {
+                 result.map((res)=> {
+                    return <span style={{color: "chocolate"}} className={"main-div-page-text"}
+                        onClick={() => {
+                            setPage(res)
+                        }}>
+                        {res}
+                    </span>
+                })
+            }
+        </div>
+    )
+}
+
 const Feed = () => {
     const auth = useContext(AuthContext)
     const [projects, setProjects] = useState(null)
     const [loading, setLoading] = useState(true)
-    let map
+    const [page, setPage] = useState(1)
+
     let history = useHistory();
         useEffect ( () => {
 
@@ -74,23 +113,13 @@ const Feed = () => {
             </div>
             <div className={"card-holder"}>
                 {  loading ? <div className="company-name"><Loading/></div> :
-                    projects.map(
-                        (p) => {
-                            return <CardGeneration project={p}/>
-                        }
-                    ).reverse()
+                    <ProjectsPageGeneration projects={projects} page={page}/>
                 }
 
             </div>
-            {/*<div className={"main-div-tools"}>*/}
-            {/*    { loading ? <div className="company-name"> </div> :*/}
-            {/*        projects.map(*/}
-            {/*            (p) => {*/}
-            {/*                return <PaginationGeneration   project={p}/>*/}
-            {/*            }*/}
-            {/*        )*/}
-            {/*    }*/}
-            {/*</div>*/}
+            { loading ? <div className="company-name"> </div> :
+                    <PagesBarGeneration   projects={projects.reverse()} setPage = {setPage} history = {history} />
+            }
         </div>
     </div>
   );
