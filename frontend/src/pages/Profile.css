@@ -63,6 +63,7 @@
     -webkit-transform: translateX(-7px);
     transform: translateX(-7px);
     transition: all 500ms ease;
+    cursor: default;
 }
 .add-project-text{
     font-size: 30px;
@@ -106,4 +107,5 @@
     -webkit-transform: translateX(-7px);
     transform: translateX(-7px);
     transition: all 500ms ease;
+    cursor: default;
 }

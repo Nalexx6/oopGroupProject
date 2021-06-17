@@ -54,6 +54,7 @@
 .main-div-minor-text:hover{
     color: wheat;
     transition: all 500ms ease;
+    cursor: default;
 }
 
 .main-div-major-text{

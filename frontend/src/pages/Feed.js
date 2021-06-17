@@ -14,14 +14,14 @@ const CardGeneration = (project) => {
     let avatar = getAvatarFromData(project.project.user.image, "circle");
     return(
 
-        <div className={"main-div-card"}>
+        <div className={"main-div-card"}
+            onClick={() => history.push({
+                 pathname : "/project",
+                 state : project.project.id
+             })}>
             <div className={"main-div-tools"}>
                 <img className="card-profile-img" src={`data:image/svg+xml;base64,${btoa(avatar)}`}/>
-                    <div className={"main-div-tools"} style={{margin: "0"}}
-                         onClick={() => history.push({
-                             pathname : "/project",
-                             state : project.project.id
-                         })}>
+                    <div className={"main-div-tools"} style={{margin: "0"}}>
                         <p className={"main-div-minor-text"} style={{textAlign: "left"}}>
                             {project.project.user.login} | {project.project.user.rating.toFixed(2)} | {project.project.title}</p>
                     </div>
