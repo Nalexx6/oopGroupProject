@@ -180,7 +180,7 @@ const Project = () => {
             checkAuth()
             getProjectForUser()
         },
-        [auth, history, loading]
+        [auth, history]
     )
     return (
     <div>
