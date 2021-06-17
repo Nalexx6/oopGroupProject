@@ -11,7 +11,6 @@ import {getAvatarFromData} from "@fractalsoftware/random-avatar-generator";
 
 const CardGeneration = (project) => {
     let history = useHistory();
-    console.log( "HUETA ", project)
     let avatar = getAvatarFromData(project.project.user.image, "circle");
     return(
 
@@ -40,13 +39,13 @@ const CardGeneration = (project) => {
 const ProjectsPageGeneration = ({projects, page}) =>{
     let _projects = []
 
-    for(let i = 5*(page - 1); i < 5*page && i < projects.length; i++)
+    for(let i = projects.length - 5*(page - 1) - 1; i > projects.length- 1 - 5*page && i >= 0; i--)
         _projects[i] = projects[i];
 
     return  (_projects.map((p) => {
             return <CardGeneration project={p}/>
         }
-    ))
+    ).reverse())
 }
 
 const PagesBarGeneration = ({projects, page, setPage, history}) => {
@@ -126,7 +125,7 @@ const Feed = () => {
 
             </div>
             { loading ? <div className="company-name"> </div> :
-                    <PagesBarGeneration   projects={projects.reverse()} page={page} setPage = {setPage} history = {history} />
+                    <PagesBarGeneration   projects={projects} page={page} setPage = {setPage} history = {history} />
             }
         </div>
     </div>
