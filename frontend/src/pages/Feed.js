@@ -49,7 +49,7 @@ const ProjectsPageGeneration = ({projects, page}) =>{
     ))
 }
 
-const PagesBarGeneration = ({projects, setPage, history}) => {
+const PagesBarGeneration = ({projects, page, setPage, history}) => {
     let j = 0;
     let i = projects.length/5;
     let result = [];
@@ -60,17 +60,25 @@ const PagesBarGeneration = ({projects, setPage, history}) => {
 
     return(
 
-        <div className={"main-div-page"} >
+        <div className={"main-div-page"} ><span style={{color: "chocolate"}} className={"main-div-page-text"}>(</span>
             {
                  result.map((res)=> {
-                    return <span style={{color: "chocolate"}} className={"main-div-page-text"}
+                     if(res === page){
+                         return <span style={{color: "wheat"}} className={"main-div-page-text"}
+                            onClick={() => {
+                                setPage(res)
+                            }}>
+                            {res}
+                        </span>
+                     }
+                     else return (<span style={{color: "chocolate"}} className={"main-div-page-text"}
                         onClick={() => {
                             setPage(res)
                         }}>
                         {res}
-                    </span>
+                    </span>)
                 })
-            }
+            }<span style={{color: "chocolate"}} className={"main-div-page-text"}>)</span>
         </div>
     )
 }
@@ -118,7 +126,7 @@ const Feed = () => {
 
             </div>
             { loading ? <div className="company-name"> </div> :
-                    <PagesBarGeneration   projects={projects.reverse()} setPage = {setPage} history = {history} />
+                    <PagesBarGeneration   projects={projects.reverse()} page={page} setPage = {setPage} history = {history} />
             }
         </div>
     </div>
