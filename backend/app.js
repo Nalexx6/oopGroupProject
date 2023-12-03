@@ -29,10 +29,12 @@ app.use((error, req, res, next) => {
     res.json({ message: error.message || 'An unknown error occurred!' });
   });
 
+const mongoURI = 'mongodb+srv://bernadadmytryi:9u21knGf7tb3ycv6@fivard.inueahe.mongodb.net/?retryWrites=true&w=majority'
+
 mongoose
-    .connect('mongodb+srv://zolottareva:pidarpidaras@cluster0.dtktk.mongodb.net/core_tool?retryWrites=true&w=majority', { useNewUrlParser: true,  useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+    .connect(mongoURI, { useNewUrlParser: true,  useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
     .then(() => {
-        app.listen(5000);
+        app.listen(4000);
     })
     .catch(err => {
         console.log(err);
